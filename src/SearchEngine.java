@@ -13,6 +13,7 @@ public class SearchEngine {
 		homeScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container pane = homeScreen.getContentPane();
 		homeScreen.setVisible(true);
+		
 	}
 
 }
