@@ -8,7 +8,6 @@ public class XMLParser {
 	
 	public XMLParser(File xmlInput) {
 		this.xmlInput = xmlInput;
-		
 	}
 	
 	Collection<Publication> getDBCollection(){
