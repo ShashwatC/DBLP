@@ -12,6 +12,10 @@ public class Author {
 	public Author() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void addPaper(Publication paper){
+		papers.add(paper);
+	}
 
 	public String getPrimaryName() {
 		return primaryName;
