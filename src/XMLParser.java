@@ -1,5 +1,10 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -13,6 +18,30 @@ public class XMLParser extends DefaultHandler {
 	
 	public XMLParser(File xmlInput) {
 		this.xmlInput = xmlInput;
+		initParser();
+	}
+	
+	public void initParser(){
+		System.out.println("Parsing finished");
+		SAXParserFactory sParserFactory = SAXParserFactory.newInstance();
+		try {
+			SAXParser sParser = sParserFactory.newSAXParser();
+			sParser.getXMLReader().setFeature("http://xml.org/sax/features/validation", true);
+			sParser.parse(xmlInput, this);
+		}
+		catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		System.out.println("Parsing finished");
 	}
 	
 	@Override
