@@ -13,22 +13,29 @@ public class QueryInputPanel extends JPanel {
     private Query2Pan query2Pan;
 
     public QueryInputPanel() {
-        //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setLayout(new GridLayout(0, 1));
-
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+       
+        query1Pan = new Query1Pan();
+        query2Pan = new Query2Pan();
+        
         String[] queryList = {"Queries", "Query 1", "Query 2"};
         queryBox = new JComboBox(queryList);
+        
+        queryBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        query1Pan.setAlignmentX(Component.CENTER_ALIGNMENT);
+        query2Pan.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         queryBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JComboBox cb = (JComboBox)e.getSource();
                 String qName = (String)cb.getSelectedItem();
 
                 if (qName.equals("Query 1")) {
-                    Component[] compList = {queryBox, new Query1Pan()};
+                    Component[] compList = {queryBox, query1Pan};
                     redraw(compList);
                 }
                 else if (qName.equals("Query 2")) {
-                    Component[] compList = {queryBox, new Query2Pan()};
+                    Component[] compList = {queryBox, query2Pan};
                     redraw(compList);
                 }
                 else {
@@ -38,10 +45,11 @@ public class QueryInputPanel extends JPanel {
             }
         });
         
-        query1Pan = new Query1Pan();
-        query2Pan = new Query2Pan();
-        
+        this.add(Box.createRigidArea(
+                new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/6)));
         this.add(queryBox);
+        this.add(Box.createRigidArea(
+                new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/6)));
     }
 
     public void redraw(Component[] panList) {
@@ -66,17 +74,22 @@ public class QueryInputPanel extends JPanel {
         JTextField customRange2F;
 
         public Query1Pan() {
-            //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            this.setLayout(new GridLayout(0, 1));
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            //this.setLayout(new GridLayout(0, 1));
             
             textFieldPan = new JPanel();
             radioButtonPan = new JPanel();
 
             String[] searchByList = {"Search By", "Author name", "Title tags"};
             searchByBox = new JComboBox(searchByList);
+            
             makeTextFieldPan();
             makeRadioButtonPan();
 
+            searchByBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+            textFieldPan.setAlignmentX(Component.CENTER_ALIGNMENT);
+            radioButtonPan.setAlignmentX(Component.CENTER_ALIGNMENT);
+            
             this.add(searchByBox);
             this.add(textFieldPan);
             this.add(radioButtonPan);

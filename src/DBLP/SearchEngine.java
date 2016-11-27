@@ -12,16 +12,35 @@ import java.awt.*;
 public class SearchEngine extends JFrame {
     
     static final Font PFONT = new Font("Arial", Font.PLAIN, 13);
-    private static final int frameW = 800;
-    private static final int frameH = 600;
+    static final int FRAMEW = 800;
+    static final int FRAMEH = 600;
+    
+    Header header;
+    QueryInputPanel queryInputPan;
+    QueryOutputPanel queryOutputPan;
     
     public SearchEngine() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(frameW, frameH);
+        this.setSize(FRAMEW, FRAMEH);
         
-        //this.add(new Header());
-        this.add(new QueryInputPanel());
-        //this.add(new QueryOutputPanel());
+        header = new Header();
+        queryInputPan = new QueryInputPanel();
+        queryOutputPan = new QueryOutputPanel();
+        
+        JPanel topPan = new JPanel();
+        topPan.setLayout(new GridLayout(0, 1));
+        JPanel midPan = new JPanel();
+        midPan.setLayout(new GridLayout(0, 2));
+        
+        midPan.add(queryInputPan);
+        midPan.add(queryOutputPan);
+        
+        topPan.add(header);
+        topPan.add(midPan);
+        
+        this.add(topPan);
+        
+        //this.pack();
     }
     
     public void redraw(Component pan) {
