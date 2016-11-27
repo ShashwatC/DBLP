@@ -1,11 +1,7 @@
 package DBLP;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 /** \class SearchEngine
  *  \brief Overall GUI for application
@@ -15,16 +11,17 @@ import javax.swing.JPanel;
 
 public class SearchEngine extends JFrame {
     
-    private final Font pFont = new Font("Arial", Font.PLAIN, 13);
-    private final int frameW = 800;
-    private final int frameH = 600;
+    static final Font PFONT = new Font("Arial", Font.PLAIN, 13);
+    private static final int frameW = 800;
+    private static final int frameH = 600;
     
     public SearchEngine() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(frameW, frameH);
-        this.add(new Header());
+        
+        //this.add(new Header());
         this.add(new QueryInputPanel());
-        this.add(new QueryOutputPanel());
+        //this.add(new QueryOutputPanel());
     }
     
     public void redraw(Component pan) {
@@ -33,25 +30,9 @@ public class SearchEngine extends JFrame {
         this.validate();
         this.getContentPane().repaint();
     }
-
-    /** \class Header
-     *  \brief Displays big-ass heading in window
-     */
-    public class Header extends JPanel {
-        
-    }
     
-    /** \class QueryInputPanel
-     *  \brief Inputs various params for different kinds of queries
-     */
-    public class QueryInputPanel extends JPanel {
-        
-    }
-    
-    /** \class QueryOutputPanel
-     *  \brief Outputs search results in tabular form.
-     */
-    public class QueryOutputPanel extends JPanel {
-        
+    public static void main(String[] args) {
+        SearchEngine se = new SearchEngine();
+        se.setVisible(true);
     }
 }

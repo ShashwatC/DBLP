@@ -13,18 +13,18 @@ public class Searcher {
 	}
 	
 	public Collection<Publication> findByAuthor(String name){
-		
+		return null;
 	}
 
 	public Collection<Publication> findByTitleTage(List<String> searchTermList){
-		
+	    return null;
 	}
 	
 	public Collection<Publication> findGreaterThanNum(int k){
-		
+	    return null;
 	}
 	
 	public Integer predictNum(String author, int year){
-		
+	    return null;
 	}
 }
