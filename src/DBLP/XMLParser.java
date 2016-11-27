@@ -17,9 +17,20 @@ public class XMLParser extends DefaultHandler {
 	File xmlInput;
 	Collection<Publication> publications;
 	Collection<Author> author;
+	private static XMLParser instance;
 	
-	public XMLParser(File xmlInput) {
-		this.xmlInput = xmlInput;
+	public static void setInput(File xmlInput){
+		instance.xmlInput = xmlInput;
+	}
+	
+	public static XMLParser getInstance(){
+		if (instance!=null){
+			instance = new XMLParser();
+		}
+		return instance;
+	}
+	
+	private XMLParser() {
 		initParser();
 	}
 	
