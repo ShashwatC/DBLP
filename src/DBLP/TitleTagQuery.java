@@ -20,6 +20,7 @@ public class TitleTagQuery extends Query{
 		}
 		else{
 			System.out.println("Publications found");
+			publications = SortedResultSet.getInstance(publications).generateResultSet();
 			int ctr = 1;
 			for (Publication p : publications){
 				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());

@@ -9,7 +9,7 @@ public class Author {
 	private String title;
 	private String url;
 	private String additionalNotes;
-	private Collection<Publication> papers;
+	private List<Publication> papers;
 	
 	public Author() {
 		// TODO Auto-generated constructor stub
@@ -59,11 +59,11 @@ public class Author {
 		this.additionalNotes = additionalNotes;
 	}
 
-	public Collection<Publication> getPapers() {
+	public List<Publication> getPapers() {
 		return papers;
 	}
 
-	public void setPapers(Collection<Publication> papers) {
+	public void setPapers(List<Publication> papers) {
 		this.papers = papers;
 	}
 

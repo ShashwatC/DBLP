@@ -3,7 +3,7 @@ package DBLP;
 import java.util.Date;
 import java.util.List;
 
-public class Publication {
+public class Publication implements Comparable<Publication>{
 	private int key;
 	private Date mDate;
 	private String title;
@@ -98,5 +98,17 @@ public class Publication {
 	public void setAuthorNameList (List<String> authorNameList){
 		this.authorNameList = authorNameList;
 	}
+
+	@Override
+	public int compareTo(Publication compareTo) {
+		// TODO Auto-generated method stub
+		if (Integer.parseInt(this.getYear()) < Integer.parseInt(compareTo.getYear()))
+			return -1;
+		if (Integer.parseInt(this.getYear()) > Integer.parseInt(compareTo.getYear()))
+			return 1;
+		return 0;
+	}
+	
+	
 
 }

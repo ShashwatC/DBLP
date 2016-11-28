@@ -20,6 +20,7 @@ public class AuthorNameQuery extends Query{
 		}
 		else{
 			System.out.println("Author Found");
+			theAuthor.setPapers(SortedResultSet.getInstance(theAuthor.getPapers()).generateResultSet());
 			int ctr = 1;
 			for (Publication p : theAuthor.getPapers()){
 				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());
