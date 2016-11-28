@@ -17,6 +17,8 @@ public class QueryInputPanel extends JPanel {
     private Component[] comp1List;
     private Component[] comp2List;
     
+    private int currQType;
+    
     public QueryInputPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setMaximumSize(new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH));
@@ -25,6 +27,48 @@ public class QueryInputPanel extends JPanel {
         queryBox = new JComboBox(queryList);
         queryBox.setMaximumSize(queryBox.getPreferredSize());
         
+        currQType = 0;
+        reset();
+                
+        queryBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox)e.getSource();
+                String qName = (String)cb.getSelectedItem();
+
+                if (qName.equals("Query 1")) {
+                    currQType = 1;
+                    redraw(comp1List);
+                }
+                else if (qName.equals("Query 2")) {
+                    currQType = 2;
+                    redraw(comp2List);
+                }
+                else {
+                    currQType = 0;
+                    redraw(comp0List);
+                }
+            }
+        });
+        
+        this.add(Box.createRigidArea(
+                new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/6)));
+        this.add(queryBox);
+        this.add(Box.createRigidArea(
+                new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3)));
+    }
+
+    private void redraw(Component[] panList) {
+        this.removeAll();
+
+        for (Component pan : panList) {
+            this.add(pan);
+        }
+
+        this.validate();
+        this.repaint();
+    }
+    
+    private void reset() {
         query1Pan = new Query1Pan();
         query2Pan = new Query2Pan();
         searchResetPan = new SearchResetPan();
@@ -61,152 +105,6 @@ public class QueryInputPanel extends JPanel {
                         new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/3))
         };
         System.arraycopy(comp0List, 0, this.comp0List, 0, comp0List.length);
-        
-        queryBox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cb = (JComboBox)e.getSource();
-                String qName = (String)cb.getSelectedItem();
-
-                if (qName.equals("Query 1")) {
-                    redraw(comp1List);
-                }
-                else if (qName.equals("Query 2")) {
-                    redraw(comp2List);
-                }
-                else {
-                    redraw(comp0List);
-                }
-            }
-        });
-        
-        this.add(Box.createRigidArea(
-                new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/6)));
-        this.add(queryBox);
-        this.add(Box.createRigidArea(
-                new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3)));
-    }
-
-    public void redraw(Component[] panList) {
-        this.removeAll();
-
-        for (Component pan : panList) {
-            this.add(pan);
-        }
-
-        this.validate();
-        this.repaint();
-    }
-
-    private class Query1Pan extends JPanel {
-        JComboBox searchByBox;
-        JPanel textFieldPan;
-        JPanel radioButtonPan;
-
-        JTextField nameTitleF;
-        JTextField sinceYearF;
-        JTextField customRange1F;
-        JTextField customRange2F;
-
-        JRadioButton sortYearB;
-        JRadioButton sortRelB;
-        
-        public Query1Pan() {
-            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            
-            textFieldPan = new JPanel();
-            radioButtonPan = new JPanel();
-
-            String[] searchByList = {"Search By", "Author name", "Title tags"};
-            searchByBox = new JComboBox(searchByList);
-            searchByBox.setMaximumSize(searchByBox.getPreferredSize());
-            
-            makeTextFieldPan();
-            makeRadioButtonPan();
-
-            this.add(searchByBox);
-            this.add(textFieldPan);
-            this.add(radioButtonPan);
-        }
-
-        private void makeTextFieldPan() {
-            textFieldPan.setLayout(new GridLayout(0, 2));
-
-            PrettyLabel nameTitleL = new PrettyLabel("Name/title tags");
-            JTextField nameTitleF = new JTextField();
-
-            PrettyLabel sinceYearL = new PrettyLabel("Since Year");
-            JTextField sinceYearF = new JTextField("YYYY");
-
-            PrettyLabel customRangeL = new PrettyLabel("Custom Range");
-            JTextField customRange1F = new JTextField("YYYY");
-            JTextField customRange2F = new JTextField("YYYY");
-            JPanel customRangeF = new JPanel();
-            customRangeF.add(customRange1F);
-            customRangeF.add(new PrettyLabel("-"));
-            customRangeF.add(customRange2F);
-
-            textFieldPan.add(nameTitleL);
-            textFieldPan.add(nameTitleF);
-            textFieldPan.add(sinceYearL);
-            textFieldPan.add(sinceYearF);
-            textFieldPan.add(customRangeL);
-            textFieldPan.add(customRangeF);
-        }
-
-        private void makeRadioButtonPan() {
-            radioButtonPan.setLayout(new GridLayout(0, 1));
-
-            sortYearB = new JRadioButton("Sort By Year");
-            sortRelB = new JRadioButton("Sort By Relevance");
-            ButtonGroup sortGroup = new ButtonGroup();
-
-            //sortYearB.addActionListener(this);
-            //sortRelB.addActionListener(this);
-
-            sortGroup.add(sortYearB);
-            sortGroup.add(sortRelB);
-
-            radioButtonPan.add(sortYearB);
-            radioButtonPan.add(sortRelB);
-        }
-        
-        public ArrayList<? extends Object> formContentsValid() {
-            String nameTitleT = nameTitleF.getText();
-            String sinceYearT = sinceYearF.getText();
-            String customRange1T = customRange1F.getText();
-            String customRange2T = customRange2F.getText();
-            
-            boolean sortYearS = sortYearB.isSelected();
-            boolean sortRelS = sortRelB.isSelected();
-            
-            return null;
-        }
-    }
-
-    private class Query2Pan extends JPanel {
-        JTextField nofPubF;
-
-        public Query2Pan() {
-            this.setLayout(new GridLayout(0, 2));
-
-            PrettyLabel nofPubL = new PrettyLabel("No. of Publications");
-            nofPubF = new JTextField();
-
-            this.add(nofPubL);
-            this.add(nofPubF);
-        }
-        
-        public ArrayList<? extends Object> formContentsValid() {
-            ArrayList<String> ret = new ArrayList<String>();
-            
-            String nofPubT = nofPubF.getText();
-            ret.add(nofPubT);
-            
-            if (nofPubT.isEmpty())
-                return null;
-            else
-                return ret;
-        }
     }
     
     private class SearchResetPan extends JPanel {
@@ -225,6 +123,40 @@ public class QueryInputPanel extends JPanel {
             
             searchB = new PrettyButton("Search", Color.BLACK);
             resetB = new PrettyButton("Reset", Color.RED);
+            
+            invalidL.setAlignmentX(CENTER_ALIGNMENT);
+            
+            searchB.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ArrayList<? extends Object> params = new ArrayList<Object>();
+                    
+                    switch(currQType) {
+                        case 1: params = query1Pan.formContentsValid(); break;
+                        case 2: params = query2Pan.formContentsValid(); break;
+                        default: break;
+                    }
+                    
+                    if (params != null) {
+                        invalidL.setVisible(false);
+                        ///< We pass it to the Model (Query, Parser, whatever)
+                    }
+                    else {
+                        invalidL.setVisible(true);
+                    }
+                }
+            });
+            
+            resetB.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    reset();
+                    switch(currQType) {
+                        case 0: redraw(comp0List); break;
+                        case 1: redraw(comp1List); break;
+                        case 2: redraw(comp2List); break;
+                        default: break;
+                    }
+                }
+            });
             
             midPan.add(searchB);
             midPan.add(resetB);

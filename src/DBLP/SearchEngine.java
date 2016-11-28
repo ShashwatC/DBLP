@@ -63,8 +63,7 @@ public class SearchEngine extends JFrame {
     
     public static void main(String[] args) {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
-        //SearchEngine se = new SearchEngine();
-        //se.setVisible(true);
+        
     	Adapter.setXMLFileLocation("sample.xml");
     	java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
@@ -96,5 +95,9 @@ public class SearchEngine extends JFrame {
     	 * arg2 = (integer ArrayList) of size 1
     	 */
     	
+    	new QueryFactory("findByAuthor",x);
+    	
+    	SearchEngine se = new SearchEngine();
+        se.setVisible(true);
     }
 }
