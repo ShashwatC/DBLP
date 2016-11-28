@@ -1,7 +1,6 @@
 package DBLP;
 
 import java.io.File;
-import java.util.List;
 
 import org.xml.sax.Attributes;
 
@@ -11,7 +10,7 @@ public class AuthorNameParser extends XMLParser {
 	private boolean checkAuthor = false;
 	private String theAuthorName;
 	private boolean insidePublication = false;
-	private boolean first;
+	private boolean disabled = false;
 	String stringBuilder;
 
 	public AuthorNameParser(File xmlInput, String theAuthorName) {
@@ -28,12 +27,23 @@ public class AuthorNameParser extends XMLParser {
 
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes){
-		if (depth==2 && qName.equals("author")){
-			checkAuthor = true;
+		if (depth==1){
+			if (qName.equals("person")){
+				disabled = true;	// Ignore person fields
+			}
+			else{
+				disabled = false;
+			}
 		}
-		if (insidePublication){
-			stringBuilder = "";
-			System.out.println("<"+qName+">");
+		if (!disabled){
+			if (depth==2 && qName.equals("author")){
+				checkAuthor = true;				// If it's author then some work needs to be done in character
+				stringBuilder = "";
+			}
+			else if (insidePublication){
+				stringBuilder = "";				// If it's insidePublication work in character
+				System.out.println("<"+qName+">");
+			}
 		}
 		depth++;
 	}
@@ -41,36 +51,31 @@ public class AuthorNameParser extends XMLParser {
 	@Override
 	public void endElement(String uri, String localName, String qName){
 		depth--;
-		if (insidePublication){
-			if (first){
-				first = false;
+		if (!disabled){
+			if (checkAuthor){	// Do we need to check is author is the guy we want
+				checkAuthor = false;
+				if (stringBuilder.equals(theAuthorName)){
+					theAuthor.setPrimaryName(theAuthorName);
+					System.out.println("New author entry");
+					insidePublication = true;
+				}
 			}
-			else{
+			else if (insidePublication){	// Do we need to read the stringBuilder data
 				if (depth==1)
 					insidePublication = false;
 				if (depth==2){
-					System.out.println("We got:" +stringBuilder);
+					System.out.println(stringBuilder);
+					System.out.println("</"+qName+">");
 				}
 			}
 		}
-
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length){
-		if (checkAuthor){
-			String name = new String(ch,start,length);
-			if (name.equals(theAuthorName)){
-				theAuthor.setPrimaryName(theAuthorName);
-				System.out.println("New author entry");
-				insidePublication = true;
-				first = true;
-			}
-			checkAuthor = false;
-		}
-		else if (insidePublication){
-			stringBuilder+=new String(ch,start,length);
-		}
+		if (!disabled && (checkAuthor || insidePublication)){			
+			stringBuilder+=new String(ch,start,length);										
+		}		
 	}
 
 }
