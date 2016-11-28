@@ -16,4 +16,10 @@ public class PrettyLabel extends JLabel {
             this.setFont(SearchEngine.PFONT);
             this.setForeground(Color.DARK_GRAY);
     }
+    
+    public PrettyLabel(String txt, Color col) {
+        super(txt);
+        this.setFont(SearchEngine.PFONT);
+        this.setForeground(col);
+    }
 }

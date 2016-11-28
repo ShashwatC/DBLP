@@ -8,7 +8,9 @@ import java.awt.*;
  */
 public class QueryOutputPanel extends JPanel {
     public QueryOutputPanel() {
-        super(new GridLayout(0, 1));
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        this.setMaximumSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         
         String[] columnNames = {"S.no",
                 "Authors",
@@ -28,11 +30,13 @@ public class QueryOutputPanel extends JPanel {
         };
         
         final JTable table = new JTable(data, columnNames);
-        table.setPreferredScrollableViewportSize(new Dimension(SearchEngine.FRAMEW*2/3, SearchEngine.FRAMEH));
+        table.setPreferredScrollableViewportSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         table.setFillsViewportHeight(true);
         
-        JScrollPane scrollpane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(table);
         
-        add(scrollpane);
+        scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        this.add(scrollPane);
     }
 }
