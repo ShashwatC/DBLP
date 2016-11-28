@@ -24,18 +24,26 @@ public class SearchEngine extends JFrame {
     public SearchEngine() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(FRAMEW, FRAMEH);
+        this.setMaximumSize(new Dimension(FRAMEW, FRAMEH));
         
         header = new Header();
         queryInputPan = new QueryInputPanel();
         queryOutputPan = new QueryOutputPanel();
         
         JPanel topPan = new JPanel();
-        topPan.setLayout(new GridLayout(0, 1));
+        topPan.setLayout(new BoxLayout(topPan, BoxLayout.Y_AXIS));
+        
         JPanel midPan = new JPanel();
-        midPan.setLayout(new GridLayout(0, 2));
+        midPan.setLayout(new BoxLayout(midPan, BoxLayout.X_AXIS));
+        
+        queryInputPan.setAlignmentY(Component.CENTER_ALIGNMENT);
+        queryOutputPan.setAlignmentY(Component.CENTER_ALIGNMENT);
         
         midPan.add(queryInputPan);
         midPan.add(queryOutputPan);
+        
+        header.setAlignmentX(Component.CENTER_ALIGNMENT);
+        midPan.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         topPan.add(header);
         topPan.add(midPan);

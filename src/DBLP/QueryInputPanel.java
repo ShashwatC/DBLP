@@ -3,6 +3,7 @@ package DBLP;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /** \class QueryInputPanel
  *  \brief Inputs various params for different kinds of queries
@@ -11,19 +12,55 @@ public class QueryInputPanel extends JPanel {
     private JComboBox queryBox;
     private Query1Pan query1Pan;
     private Query2Pan query2Pan;
-
+    private SearchResetPan searchResetPan;
+    private Component[] comp0List;
+    private Component[] comp1List;
+    private Component[] comp2List;
+    
     public QueryInputPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setMaximumSize(new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH));
        
-        query1Pan = new Query1Pan();
-        query2Pan = new Query2Pan();
-        
         String[] queryList = {"Queries", "Query 1", "Query 2"};
         queryBox = new JComboBox(queryList);
+        queryBox.setMaximumSize(queryBox.getPreferredSize());
         
-        queryBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-        query1Pan.setAlignmentX(Component.CENTER_ALIGNMENT);
-        query2Pan.setAlignmentX(Component.CENTER_ALIGNMENT);
+        query1Pan = new Query1Pan();
+        query2Pan = new Query2Pan();
+        searchResetPan = new SearchResetPan();
+        comp0List = new Component[5];
+        comp1List = new Component[5];
+        comp2List = new Component[5];
+        
+        ///< For Query 1
+        Component[] comp1List = {
+                Box.createRigidArea(
+                        new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/6)),
+                queryBox, query1Pan, searchResetPan,
+                Box.createRigidArea(
+                        new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3))
+        };
+        System.arraycopy(comp1List, 0, this.comp1List, 0, comp1List.length);
+        
+        ///< For Query 2
+        Component[] comp2List = {
+                Box.createRigidArea(
+                        new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/6)),
+                queryBox, query2Pan, searchResetPan,
+                Box.createRigidArea(
+                        new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3))
+        };
+        System.arraycopy(comp2List, 0, this.comp2List, 0, comp2List.length);
+        
+        ///< For empty query
+        Component[] comp0List = {
+                Box.createRigidArea(
+                        new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/6)),
+                queryBox,
+                Box.createRigidArea(
+                        new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/3))
+        };
+        System.arraycopy(comp0List, 0, this.comp0List, 0, comp0List.length);
         
         queryBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -31,25 +68,22 @@ public class QueryInputPanel extends JPanel {
                 String qName = (String)cb.getSelectedItem();
 
                 if (qName.equals("Query 1")) {
-                    Component[] compList = {queryBox, query1Pan};
-                    redraw(compList);
+                    redraw(comp1List);
                 }
                 else if (qName.equals("Query 2")) {
-                    Component[] compList = {queryBox, query2Pan};
-                    redraw(compList);
+                    redraw(comp2List);
                 }
                 else {
-                    Component[] compList = {queryBox};
-                    redraw(compList);
+                    redraw(comp0List);
                 }
             }
         });
         
         this.add(Box.createRigidArea(
-                new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/6)));
+                new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/6)));
         this.add(queryBox);
         this.add(Box.createRigidArea(
-                new Dimension(SearchEngine.FRAMEW, SearchEngine.FRAMEH/6)));
+                new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3)));
     }
 
     public void redraw(Component[] panList) {
@@ -73,23 +107,22 @@ public class QueryInputPanel extends JPanel {
         JTextField customRange1F;
         JTextField customRange2F;
 
+        JRadioButton sortYearB;
+        JRadioButton sortRelB;
+        
         public Query1Pan() {
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            //this.setLayout(new GridLayout(0, 1));
             
             textFieldPan = new JPanel();
             radioButtonPan = new JPanel();
 
             String[] searchByList = {"Search By", "Author name", "Title tags"};
             searchByBox = new JComboBox(searchByList);
+            searchByBox.setMaximumSize(searchByBox.getPreferredSize());
             
             makeTextFieldPan();
             makeRadioButtonPan();
 
-            searchByBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-            textFieldPan.setAlignmentX(Component.CENTER_ALIGNMENT);
-            radioButtonPan.setAlignmentX(Component.CENTER_ALIGNMENT);
-            
             this.add(searchByBox);
             this.add(textFieldPan);
             this.add(radioButtonPan);
@@ -123,8 +156,8 @@ public class QueryInputPanel extends JPanel {
         private void makeRadioButtonPan() {
             radioButtonPan.setLayout(new GridLayout(0, 1));
 
-            JRadioButton sortYearB = new JRadioButton("Sort By Year");
-            JRadioButton sortRelB = new JRadioButton("Sort By Relevance");
+            sortYearB = new JRadioButton("Sort By Year");
+            sortRelB = new JRadioButton("Sort By Relevance");
             ButtonGroup sortGroup = new ButtonGroup();
 
             //sortYearB.addActionListener(this);
@@ -135,6 +168,18 @@ public class QueryInputPanel extends JPanel {
 
             radioButtonPan.add(sortYearB);
             radioButtonPan.add(sortRelB);
+        }
+        
+        public ArrayList<? extends Object> formContentsValid() {
+            String nameTitleT = nameTitleF.getText();
+            String sinceYearT = sinceYearF.getText();
+            String customRange1T = customRange1F.getText();
+            String customRange2T = customRange2F.getText();
+            
+            boolean sortYearS = sortYearB.isSelected();
+            boolean sortRelS = sortRelB.isSelected();
+            
+            return null;
         }
     }
 
@@ -149,6 +194,43 @@ public class QueryInputPanel extends JPanel {
 
             this.add(nofPubL);
             this.add(nofPubF);
+        }
+        
+        public ArrayList<? extends Object> formContentsValid() {
+            ArrayList<String> ret = new ArrayList<String>();
+            
+            String nofPubT = nofPubF.getText();
+            ret.add(nofPubT);
+            
+            if (nofPubT.isEmpty())
+                return null;
+            else
+                return ret;
+        }
+    }
+    
+    private class SearchResetPan extends JPanel {
+        PrettyLabel invalidL;
+        PrettyButton searchB;
+        PrettyButton resetB;
+        
+        public SearchResetPan() {
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            
+            JPanel midPan = new JPanel();
+            midPan.setLayout(new BoxLayout(midPan, BoxLayout.X_AXIS));
+            
+            invalidL = new PrettyLabel("Parameters are invalid. Try again.", Color.RED);
+            invalidL.setVisible(false);
+            
+            searchB = new PrettyButton("Search", Color.BLACK);
+            resetB = new PrettyButton("Reset", Color.RED);
+            
+            midPan.add(searchB);
+            midPan.add(resetB);
+            
+            this.add(invalidL);
+            this.add(midPan);
         }
     }
 }
