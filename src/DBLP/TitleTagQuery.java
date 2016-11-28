@@ -21,11 +21,12 @@ public class TitleTagQuery extends Query{
 	}
 	
 	private void since(){
+		publications = SinceResultSet.getInstance(publications,parameters2.get(0)).generateResultSet();
 		
 	}
 	
 	private void between(){
-		
+		publications = BetweenResultSet.getInstance(publications,parameters2.get(0),parameters2.get(1)).generateResultSet();
 	}
 
 	@Override

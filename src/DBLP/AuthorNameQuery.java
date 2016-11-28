@@ -20,11 +20,12 @@ public class AuthorNameQuery extends Query{
 	}
 	
 	private void since(){
-		
+		System.out.println("YO");
+		theAuthor.setPapers(SinceResultSet.getInstance(theAuthor.getPapers(),parameters2.get(0)).generateResultSet());
 	}
 	
 	private void between(){
-		
+		theAuthor.setPapers(BetweenResultSet.getInstance(theAuthor.getPapers(),parameters2.get(0),parameters2.get(1)).generateResultSet());
 	}
 
 	@Override
