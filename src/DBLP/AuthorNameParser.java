@@ -2,7 +2,6 @@ package DBLP;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.xml.sax.Attributes;
@@ -13,10 +12,10 @@ public class AuthorNameParser extends XMLParser {
 	private String theAuthorName;
 	private boolean insidePublication = false;
 	private boolean disabled = false;
-	String stringBuilder;
+	private String stringBuilder;
 	private List<Publication> publications;
 	private List<String> authorList;
-	private boolean charFlag;
+	private boolean authorFlag;
 
 	public AuthorNameParser(File xmlInput, String theAuthorName) {
 		super(xmlInput);
@@ -46,7 +45,7 @@ public class AuthorNameParser extends XMLParser {
 		if (!disabled){
 			if (depth==2 && qName.equals("author")){
 				stringBuilder = "";
-				charFlag = true; // For author, for other entries insidePublication is there
+				authorFlag = true; // For author, for other entries insidePublication is there
 				if (authorList==null){
 					authorList = new ArrayList<String>();
 				}
@@ -76,8 +75,8 @@ public class AuthorNameParser extends XMLParser {
 				}
 				if (depth==2){
 					if (qName.equals("title")){
-						charFlag = false; // It was for author, author has been located
-						if (stringBuilder.equals("Home Page")){
+						authorFlag = false; // It was for author, author has been located
+						if (stringBuilder.equals("Home Page")){   // Person's DBLP home page
 							stringBuilder = "";
 							authorList = null;
 							disabled = true;	// Disabled till depth becomes 1 again, i.e. new record comes
@@ -90,13 +89,13 @@ public class AuthorNameParser extends XMLParser {
 						}
 					}
 					else if (qName.equals("year")){
-						publications.get(publications.size()-1).setYear(Integer.parseInt(stringBuilder));
+						publications.get(publications.size()-1).setYear((stringBuilder));
 					}
 					else if (qName.equals("pages")){
-						publications.get(publications.size()-1).setNumPages(Integer.parseInt(stringBuilder));
+						publications.get(publications.size()-1).setNumPages((stringBuilder));
 					}
 					else if (qName.equals("volume")){
-						publications.get(publications.size()-1).setVolume(Integer.parseInt(stringBuilder));
+						publications.get(publications.size()-1).setVolume(stringBuilder);
 					}
 					else if (qName.equals("journal") || qName.equals("booktitle")){
 						publications.get(publications.size()-1).setJournalBook(stringBuilder);
@@ -111,7 +110,7 @@ public class AuthorNameParser extends XMLParser {
 
 	@Override
 	public void characters(char[] ch, int start, int length){
-		if (!disabled && (charFlag || insidePublication)){			
+		if (!disabled && (authorFlag || insidePublication)){			
 			stringBuilder+=new String(ch,start,length);										
 		}		
 	}

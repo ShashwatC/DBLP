@@ -14,7 +14,7 @@ public class AuthorNameQuery extends Query{
 	@Override
 	public void parseQuery() {
 		// TODO Auto-generated method stub
-		theAuthor = AdaptAuthorNameQuery.getInstance().parseQuery(name);
+		theAuthor = AuthorNameAdapter.getInstance().parseQuery(name);
 		if (theAuthor.getPrimaryName()==null){
 			System.out.println("No author by that name");
 		}
@@ -27,6 +27,7 @@ public class AuthorNameQuery extends Query{
 					System.out.print(name+" & ");
 				}
 				System.out.println();
+				ctr++;
 			}
 			// We have an author with name, and publications list defined (rest all is null)
 			// The publications have name and date defined (rest all is null)

@@ -13,7 +13,8 @@ public class QueryFactory {
 			q.parseQuery();
 		}
 		if (queryType.equals("findByTitleTags")){
-			
+			TitleTagQuery q = new TitleTagQuery(parameters);
+			q.parseQuery();
 		}
 		if (queryType.equals("predict")){
 			

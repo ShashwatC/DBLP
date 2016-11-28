@@ -58,7 +58,9 @@ public class SearchEngine extends JFrame {
         //se.setVisible(true);
     	Adapter.setXMLFileLocation("sample.xml");
     	java.util.List<Object> x = new java.util.ArrayList<Object>();
-    	x.add(new String("Michael Ley"));
+    	x.add(new String("Interactive Support for Non-Programmers: The Relational and Network Approaches."));
+    	new QueryFactory("findByTitleTags",x);
+    	x.set(0,new String("E. F. Codd") );
     	new QueryFactory("findByAuthor",x);
     }
 }

@@ -9,9 +9,9 @@ public class Publication {
 	private String title;
 	private List<Author> authorList;
 	private List<String> authorNameList;
-	private int numPages;
-	private int year;
-	private int volume;
+	private String numPages;
+	private String year;
+	private String volume;
 	private String journalBook;
 	private String url;
 	
@@ -55,27 +55,27 @@ public class Publication {
 		this.authorList = authorList;
 	}
 
-	public int getNumPages() {
+	public String getNumPages() {
 		return numPages;
 	}
 
-	public void setNumPages(int numPages) {
+	public void setNumPages(String numPages) {
 		this.numPages = numPages;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
-	public int getVolume() {
+	public String getVolume() {
 		return volume;
 	}
 
-	public void setVolume(int volume) {
+	public void setVolume(String volume) {
 		this.volume = volume;
 	}
 
