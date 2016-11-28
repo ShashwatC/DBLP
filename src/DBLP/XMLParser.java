@@ -13,26 +13,14 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class XMLParser extends DefaultHandler {
-	File xmlInput;
-	Collection<Publication> publications;
-	Collection<Author> author;
-	private static XMLParser instance;
-	private int depth = 0;
+public abstract class XMLParser extends DefaultHandler {
+	private Collection<Publication> publications;
+	private Collection<Author> author;
+	private File xmlInput;
 	
-	public void parseFile(File xmlInput){
-		instance.xmlInput = xmlInput;
-		initParser();
+	public XMLParser(File xmlInput){
+		this.xmlInput = xmlInput;
 	}
-	
-	public static XMLParser getInstance(){
-		if (instance==null){
-			instance = new XMLParser();
-		}
-		return instance;
-	}
-	
-	private XMLParser() {}
 	
 	public void initParser(){
 		System.out.println("Parsing started");
@@ -58,30 +46,12 @@ public class XMLParser extends DefaultHandler {
 	}
 	
 	@Override
-	public void startElement(String uri, String localName, String qName, Attributes attributes){
-		for (int i=0; i<depth;i++){
-			System.out.print("\t");
-		}
-		System.out.println("<"+qName+">");
-		depth++;
-	}
+	public abstract void startElement(String uri, String localName, String qName, Attributes attributes);
 	
 	@Override
-	public void endElement(String uri, String localName, String qName){
-		depth--;
-		for (int i=0; i<depth;i++){
-			System.out.print("\t");
-		}
-		System.out.println("</"+qName+">");
-	}
-
+	public abstract void endElement(String uri, String localName, String qName);
 	@Override
-	public void characters(char[] ch, int start, int length){
-		for (int i=0; i<depth;i++){
-			System.out.print("\t");
-		}
-		System.out.println(new String(ch,start,length));
-	}
+	public abstract void characters(char[] ch, int start, int length);
 
 	@Override
     public void warning(SAXParseException exception) throws SAXException {
