@@ -18,24 +18,24 @@ public class XMLParser extends DefaultHandler {
 	Collection<Publication> publications;
 	Collection<Author> author;
 	private static XMLParser instance;
+	private int depth = 0;
 	
-	public static void setInput(File xmlInput){
+	public void parseFile(File xmlInput){
 		instance.xmlInput = xmlInput;
+		initParser();
 	}
 	
 	public static XMLParser getInstance(){
-		if (instance!=null){
+		if (instance==null){
 			instance = new XMLParser();
 		}
 		return instance;
 	}
 	
-	private XMLParser() {
-		initParser();
-	}
+	private XMLParser() {}
 	
 	public void initParser(){
-		System.out.println("Parsing finished");
+		System.out.println("Parsing started");
 		SAXParserFactory sParserFactory = SAXParserFactory.newInstance();
 		try {
 			SAXParser sParser = sParserFactory.newSAXParser();
@@ -59,17 +59,28 @@ public class XMLParser extends DefaultHandler {
 	
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes){
-		
+		for (int i=0; i<depth;i++){
+			System.out.print("\t");
+		}
+		System.out.println("<"+qName+">");
+		depth++;
 	}
 	
 	@Override
 	public void endElement(String uri, String localName, String qName){
-		
+		depth--;
+		for (int i=0; i<depth;i++){
+			System.out.print("\t");
+		}
+		System.out.println("</"+qName+">");
 	}
 
 	@Override
 	public void characters(char[] ch, int start, int length){
-		
+		for (int i=0; i<depth;i++){
+			System.out.print("\t");
+		}
+		System.out.println(new String(ch,start,length));
 	}
 
 	@Override

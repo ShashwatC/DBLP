@@ -2,6 +2,7 @@ package DBLP;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /** \class SearchEngine
  *  \brief Overall GUI for application
@@ -51,7 +52,10 @@ public class SearchEngine extends JFrame {
     }
     
     public static void main(String[] args) {
-        SearchEngine se = new SearchEngine();
-        se.setVisible(true);
+        //SearchEngine se = new SearchEngine();
+        //se.setVisible(true);
+    	   
+    	XMLParser x = XMLParser.getInstance();
+    	x.parseFile(new File("sample.xml"));
     }
 }
