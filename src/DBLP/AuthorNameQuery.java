@@ -6,9 +6,25 @@ public class AuthorNameQuery extends Query{
 	private String name;
 	private Author theAuthor;
 	
-	public AuthorNameQuery(List<Object> parameters) {
-		super(parameters);
-		name = (String)parameters.get(0);
+	public AuthorNameQuery(List<String> parameters, List<Integer> years) {
+		super(parameters,years);
+		name = parameters.get(0);
+	}
+	
+	private void sortYear(){
+		theAuthor.setPapers(SortedResultSet.getInstance(theAuthor.getPapers()).generateResultSet());
+	}
+	
+	private void sortRel(){
+		
+	}
+	
+	private void since(){
+		
+	}
+	
+	private void between(){
+		
 	}
 
 	@Override
@@ -20,7 +36,14 @@ public class AuthorNameQuery extends Query{
 		}
 		else{
 			System.out.println("Author Found");
-			theAuthor.setPapers(SortedResultSet.getInstance(theAuthor.getPapers()).generateResultSet());
+			// Processing options
+			for (String option: parameters){
+				if (option.equals("dateSort"))sortYear();
+				if (option.equals("relSort"))sortRel();
+				if (option.equals("between"))between();
+				if (option.equals("since"))since();
+			}
+			
 			int ctr = 1;
 			for (Publication p : theAuthor.getPapers()){
 				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());
