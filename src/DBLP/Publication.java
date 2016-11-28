@@ -8,6 +8,7 @@ public class Publication {
 	private Date mDate;
 	private String title;
 	private List<Author> authorList;
+	private List<String> authorNameList;
 	private int numPages;
 	private int year;
 	private int volume;
@@ -16,6 +17,10 @@ public class Publication {
 	
 	public Publication() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public List<String> getAuthorNameList(){
+		return authorNameList;
 	}
 	
 	public int getKey() {
@@ -88,6 +93,10 @@ public class Publication {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	public void setAuthorNameList (List<String> authorNameList){
+		this.authorNameList = authorNameList;
 	}
 
 }

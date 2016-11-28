@@ -56,7 +56,7 @@ public class SearchEngine extends JFrame {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
         //SearchEngine se = new SearchEngine();
         //se.setVisible(true);
-    	Adapter.setXMLFileLocation("dblp.xml");
+    	Adapter.setXMLFileLocation("sample.xml");
     	java.util.List<Object> x = new java.util.ArrayList<Object>();
     	x.add(new String("Michael Ley"));
     	new QueryFactory("findByAuthor",x);
