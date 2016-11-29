@@ -16,10 +16,12 @@ public class AuthorNameParser extends XMLParser {
 	private List<Publication> publications;
 	private List<String> authorList;
 	private boolean authorFlag;
+	private int relevanceLimit;
 
 	public AuthorNameParser(File xmlInput, String theAuthorName) {
 		super(xmlInput);
 		this.theAuthorName = theAuthorName;
+		relevanceLimit = theAuthorName.length()/3;			// Approx. 33% similarity threshold
 		theAuthor = new Author();
 		theAuthor.setPrimaryName(null);
 		publications = new ArrayList<Publication>();
@@ -43,6 +45,7 @@ public class AuthorNameParser extends XMLParser {
 			}
 		}
 		if (!disabled){
+			
 			if (depth==2 && qName.equals("author")){
 				stringBuilder = "";
 				authorFlag = true; // For author, for other entries insidePublication is there
@@ -63,8 +66,14 @@ public class AuthorNameParser extends XMLParser {
 		if (!disabled){
 			if (qName.equals("author")){	// Do we need to check is author is the guy we want
 				authorList.add(stringBuilder);
+				
 				if (stringBuilder.equals(theAuthorName)){
 					theAuthor.setPrimaryName(theAuthorName);
+					insidePublication = true;
+				}
+				else if (Relevance.calcRelevance(stringBuilder, theAuthorName)<=relevanceLimit){
+					if (theAuthor.getPrimaryName()==null)
+						theAuthor.setPrimaryName(theAuthorName);
 					insidePublication = true;
 				}
 			}

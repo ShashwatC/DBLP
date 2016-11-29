@@ -67,13 +67,13 @@ public class SearchEngine extends JFrame {
     	Adapter.setXMLFileLocation("sample.xml");
     	java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
-    	x.add("dateSort");
-    	x.add("since");
+    	//x.add("dateSort");
+    	//x.add("since");
     	ArrayList<Integer> y = new ArrayList<Integer>();
-    	y.add(1972);
+    	//y.add(1972);
     	new QueryFactory("findByTitleTags",x,y);
-    	x.set(2, "between");
-    	y.add(1982);
+    	//x.set(2, "between");
+    	//y.add(1982);
     	x.set(0,new String("E. F. Codd") );
     	new QueryFactory("findByAuthor",x,y);
     	
@@ -94,9 +94,7 @@ public class SearchEngine extends JFrame {
     	 * arg1 = null
     	 * arg2 = (integer ArrayList) of size 1
     	 */
-    	
-    	new QueryFactory("findByAuthor",x);
-    	
+    	    	
     	SearchEngine se = new SearchEngine();
         se.setVisible(true);
     }

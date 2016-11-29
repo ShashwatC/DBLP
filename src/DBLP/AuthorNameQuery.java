@@ -1,5 +1,6 @@
 package DBLP;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AuthorNameQuery extends Query{
@@ -37,25 +38,27 @@ public class AuthorNameQuery extends Query{
 		}
 		else{
 			System.out.println("Author Found");
+			Collections.sort(theAuthor.getPapers());		// Forward sort every time 
 			// Processing options
 			for (String option: parameters){
-				if (option.equals("dateSort"))sortYear();
-				if (option.equals("relSort"))sortRel();
-				if (option.equals("between"))between();
-				if (option.equals("since"))since();
+				if (option.equals("dateSort"))sortYear();	// Reverse sort
+				if (option.equals("relSort"))sortRel();		// Sort by relevance
+				if (option.equals("between"))between();		// Filter between two years
+				if (option.equals("since"))since();			// Filter start year and end year
 			}
 			
 			int ctr = 1;
 			for (Publication p : theAuthor.getPapers()){
 				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());
-				for (String name: p.getAuthorNameList()){
-					System.out.print(name+" & ");
+				if (p.getAuthorNameList()!=null){
+					
+					for (String name: p.getAuthorNameList()){
+						System.out.print(name+" & ");
+					}
 				}
 				System.out.println();
 				ctr++;
 			}
-			// We have an author with name, and publications list defined (rest all is null)
-			// The publications have name and date defined (rest all is null)
 		}
 	}
 

@@ -13,10 +13,12 @@ public class TitleTagParser extends XMLParser{
 	private String stringBuilder;
 	private List<String> authorList;
 	private boolean disabled;
+	private int relevanceLimit;
 	
 	public TitleTagParser(File xmlInput, String titleTag) {
 		super(xmlInput);
 		this.titleTag = titleTag;
+		relevanceLimit = titleTag.length()/5;			// Approx. 20% similarity threshold
 		publications = new ArrayList<Publication>();
 		super.initParser();
 		// TODO Auto-generated constructor stub
@@ -29,6 +31,12 @@ public class TitleTagParser extends XMLParser{
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) {
 		if (depth==1){
+			if (publications!=null && publications.size()>0){
+				if (publications.get(publications.size()-1).getYear()==null){
+					System.out.println("Removing it");
+					publications.remove(publications.size()-1);
+				}
+			}
 			authorList = null;
 			if (qName.equals("person")){
 				disabled = true;	// Ignore person fields
@@ -59,11 +67,13 @@ public class TitleTagParser extends XMLParser{
 			
 			
 			else if (qName.equals("title")){ // If it's a title, decide whether to take it, or leave it and everything that comes along
-				
-				if (!stringBuilder.equals(titleTag)){   	// This is not the publication we're looking for
+				int relevance = Relevance.calcRelevance(stringBuilder, titleTag);
+				if (relevance>relevanceLimit || stringBuilder.equals("Home Page") || stringBuilder.charAt(0)=='('){   	// This is not the publication we're looking for
 					disabled = true;	
 				}
-				else{  										// This is the publication we're looking for
+				else{  		
+					System.out.println("Title: "+stringBuilder);
+					// This is the publication we're looking for
 					publications.add(new Publication());
 					publications.get(publications.size()-1).setAuthorNameList(authorList);
 					publications.get(publications.size()-1).setTitle(stringBuilder);
@@ -73,6 +83,7 @@ public class TitleTagParser extends XMLParser{
 			}
 			else if (depth==2){				
 				if (qName.equals("year")){
+					System.out.println("Year: "+stringBuilder);
 					publications.get(publications.size()-1).setYear((stringBuilder));
 				}
 				else if (qName.equals("pages")){

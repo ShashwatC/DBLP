@@ -20,6 +20,19 @@
 <cdrom>DS/DS1974/P179.pdf</cdrom>
 </inproceedings>
 
+<inproceedings mdate="2012-09-18" key="persons/Codd74">
+<author>E. F. God</author>
+<title>Seven Steps to Rendezvous with the Casual User 2.</title>
+<month>January</month>
+<year>1974</year>
+<pages>179-200</pages>
+<booktitle>IFIP Working Conference Data Base Management</booktitle>
+<url>db/conf/ds/dbm74.html#Codd74</url>
+<note>IBM Research Report RJ 1333, San Jose, California</note>
+<cdrom>DS/DS1974/P179.pdf</cdrom>
+</inproceedings>
+
+
 <article mdate="2002-01-03" key="persons/CoddD74">
 <author>E. F. Codd</author>
 <author>C. J. Date</author>
@@ -31,9 +44,9 @@
 </article>
 
 <article mdate="2002-01-03" key="persons/CoddD74">
-<author>E. F. Codd</author>
+<author>E. G. Codd</author>
 <author>C. J. Date</author>
-<title>Interactive Support for Non-Programmers: The Relational and Network Approaches.</title>
+<title>Interactive Support for Non-Programmers: The Relational and Network .</title>
 <journal>IBM Research Report, San Jose, California</journal>
 <volume>RJ1400</volume>
 <month>June</month>
@@ -43,7 +56,7 @@
 <article mdate="2002-01-03" key="persons/CoddD74">
 <author>E. F. Codd</author>
 <author>C. J. Date</author>
-<title>Interactive Support for Non-Programmers: The Relational and Network Approaches.</title>
+<title>Interactive Support for Non-Programmers: The Relational and Network Appriaches.</title>
 <journal>IBM Research Report, San Jose, California</journal>
 <volume>RJ1400</volume>
 <month>June</month>
