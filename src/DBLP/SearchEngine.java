@@ -22,7 +22,7 @@ public class SearchEngine extends JFrame {
     static final Font PFONT = new Font("Arial", Font.PLAIN, 13);
     static final int FRAMEW = 800;
     static final int FRAMEH = 600;
-    static final int NOFROWS = 28;
+    static final int NOFROWS = 20;
     
     Header header;
     QueryInputPanel queryInputPan;
@@ -83,8 +83,5 @@ public class SearchEngine extends JFrame {
     	x.add("Relational");
     	x.add("relSort");
     	new QueryFactory("findByTitleTags",x,null);*/
-    	
-    	SearchEngine se = new SearchEngine();
-    	se.setVisible(true);
     }
 }

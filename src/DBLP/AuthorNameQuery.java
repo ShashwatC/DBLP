@@ -69,6 +69,7 @@ public class AuthorNameQuery extends Query{
 				System.out.println();
 				ctr++;
 			}
+			System.out.println("Sending back");
 			return publications;
 		}
 	}
