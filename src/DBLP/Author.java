@@ -3,6 +3,13 @@ package DBLP;
 import java.util.Collection;
 import java.util.List;
 
+/** \class Author
+ *  \brief Creates Author object
+ *  
+ *  Contains constructor, setter, getter, adder and increment functions
+ *  
+ */
+
 public class Author {
 	private String primaryName;
 	private List<String> otherNames;

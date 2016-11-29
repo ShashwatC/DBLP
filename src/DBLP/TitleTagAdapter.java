@@ -1,5 +1,10 @@
 package DBLP;
 
+/** \class TitleTagAdapter
+ *  \brief Concrete subclass of Adapter, translates title type queries to authorName parsers
+ *  
+ */
+
 import java.util.List;
 
 public class TitleTagAdapter extends Adapter {

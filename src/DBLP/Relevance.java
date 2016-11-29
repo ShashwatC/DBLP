@@ -1,11 +1,19 @@
 package DBLP;
 
+/** \class Relevance
+ *  \brief Has a static method to calculate the Levenshtein distance between two strings
+ *  
+ */
+
+
 public class Relevance {
-	// Levenshtein distance between s1 and s2, using DP (more the distance, less the relevance)
+	/**
+     * Levenshtein distance between s1 and s2, using DP (more the distance, less the relevance).
+     */
 	public static int calcRelevance(String s1, String s2) {
 	    s1 = s1.toLowerCase();
 	    s2 = s2.toLowerCase();
-	    int [] rel = new int [s2.length() + 1];			// DP on relevance
+	    int [] rel = new int [s2.length() + 1];			
 	    for (int j = 0; j < rel.length; j++)
 	        rel[j] = j;
 	    for (int i = 1; i <= s1.length(); i++) {

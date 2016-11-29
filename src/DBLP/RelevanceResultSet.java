@@ -1,5 +1,10 @@
 package DBLP;
 
+/** \class RelevanceResultSet
+ *  \brief Concrete implementation of ResultSet which gives results sorted by relevance to query subclasses
+ *  
+ */
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;

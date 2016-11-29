@@ -1,5 +1,11 @@
 package DBLP;
 
+/** \class BetweenResultSet
+ *  \brief Concrete implementation of ResultSet which gives results filtered by start year and end year to query subclasses
+ *  
+ */
+
+
 import java.util.List;
 import java.util.function.Predicate;
 

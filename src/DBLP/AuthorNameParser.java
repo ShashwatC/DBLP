@@ -1,5 +1,11 @@
 package DBLP;
 
+
+/** \class AuthorNameParser
+ *  \brief Concrete subclass of Parser, performs queries passed to it via adapter using SAX
+ *  
+ */
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

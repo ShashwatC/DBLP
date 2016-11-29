@@ -1,5 +1,10 @@
 package DBLP;
 
+/** \class TitleTagQuery
+ *  \brief Concrete subclass of Query, passes title type queries to parser via adapter, runs resultset functions on it
+ * 
+ */
+
 import java.util.Collections;
 import java.util.List;
 

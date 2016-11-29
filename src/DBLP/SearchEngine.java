@@ -67,7 +67,7 @@ public class SearchEngine extends JFrame {
     
     public static void main(String[] args) {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
-    	Adapter.setXMLFileLocation("dblp.xml");
+    	Adapter.setXMLFileLocation("sample.xml");
     	EntityResolutionAdapter.initialize();   
     	java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
     	x1.add(200);

@@ -1,5 +1,12 @@
 package DBLP;
 
+
+/** \class MoreThanKQuery
+ *  \brief Concrete subclass of Query, passes more than K type queries to parser via adapter, runs resultset functions on it
+ * 
+ */
+
+
 import java.util.List;
 
 public class MoreThanKQuery extends Query {

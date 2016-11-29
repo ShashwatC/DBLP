@@ -1,5 +1,10 @@
 package DBLP;
 
+/** \class SortedResultSet
+ *  \brief Concrete implementation of ResultSet which gives sorted results to query subclasses
+ *  
+ */
+
 import java.util.Collections;
 import java.util.List;
 

@@ -1,5 +1,10 @@
 package DBLP;
 
+/** \class AuthorNameAdapter
+ *  \brief Concrete subclass of Adapter, translates authorName queries to authorName parsers
+ *  
+ */
+
 import java.util.List;
 
 public class AuthorNameAdapter extends Adapter{

@@ -1,5 +1,13 @@
 package DBLP;
 
+/** \class XMLParser
+ *  \brief Abstract Class which defines methods for Parser Classes, which parse the XML File using SAX parsing
+ *  
+ *  Has the initParser method which NEEDS to be called from it's concrete subclasses for the parsing process to begin
+ *  The startElement, endElement and characters method are integral methods in SAX, and are hence made mandatory for
+ *  XMLParser's concrete subclasses to implement
+ */
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;

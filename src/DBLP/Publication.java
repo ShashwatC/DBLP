@@ -3,6 +3,13 @@ package DBLP;
 import java.util.Date;
 import java.util.List;
 
+/** \class Publisher
+ *  \brief Creates Publisher object
+ *  
+ *  Contains constructor, setter, getter, adder and increment functions
+ *  
+ */
+
 public class Publication implements Comparable<Publication>{
 	private int key;
 	private Date mDate;

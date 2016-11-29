@@ -1,5 +1,11 @@
 package DBLP;
 
+/** \class TitleTagParser
+ *  \brief Concrete subclass of Parser, performs title type queries passed to it via adapter using SAX
+ *  
+ */
+
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

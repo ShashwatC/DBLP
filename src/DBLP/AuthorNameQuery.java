@@ -1,5 +1,11 @@
 package DBLP;
 
+/** \class AuthorNameQuery
+ *  \brief Concrete subclass of Query, passes author type queries to parser via adapter, runs resultset functions on it
+ * 
+ */
+
+
 import java.util.Collections;
 import java.util.List;
 

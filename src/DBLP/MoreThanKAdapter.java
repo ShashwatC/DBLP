@@ -1,5 +1,11 @@
 package DBLP;
 
+
+/** \class MoreThanKAdapter
+ *  \brief Concrete subclass of Adapter, translates MoreThanK queries to authorName parsers
+ *  
+ */
+
 import java.util.List;
 
 public class MoreThanKAdapter extends Adapter{
