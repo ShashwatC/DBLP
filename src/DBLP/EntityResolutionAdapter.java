@@ -19,6 +19,17 @@ public class EntityResolutionAdapter extends Adapter{
 		return mapping;
 	}
 	
+	public static String getUniqueKey(String name){
+		if (exists(name)){
+			return mapping.get(name);
+		}
+		return null;
+	}
+	
+	public static boolean exists(String name){
+		return mapping.containsKey(name);
+	}
+	
 	public static boolean areSame(String name1, String name2){
 		if (mapping==null)return false;
 		if (mapping.containsKey(name1) && mapping.containsKey(name2))

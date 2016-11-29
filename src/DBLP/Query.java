@@ -8,7 +8,8 @@ public abstract class Query {
 	
 
 	public Query(List<String> parameters,List<Integer> parameters2) {
-		this.parameters = parameters.subList(1, parameters.size());
+		if (parameters!=null)
+			this.parameters = parameters.subList(1, parameters.size());
 		this.parameters2 = parameters2;
 		// TODO Auto-generated constructor stub
 	}

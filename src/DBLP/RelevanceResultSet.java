@@ -40,8 +40,17 @@ public class RelevanceResultSet extends ResultSet{
 					d2 = Relevance.calcRelevance(o2.getTitle(), title);
 				}
 				if (authorName!=null){
-					d1 = Relevance.calcRelevance(o1.getRelevantAuthor(), authorName);
-					d2 = Relevance.calcRelevance(o2.getRelevantAuthor(), authorName);
+					// The names may be different but map to the same person. In that case, we will take
+					// distance = 0. So if Shashwat Chaudhary and S.C. are same entities, then
+					// Even though the strings are very different, we take relevance to be perfect
+					if (EntityResolutionAdapter.areSame(o1.getRelevantAuthor(),authorName))
+						d1 = 0;
+					else
+						d1 = Relevance.calcRelevance(o1.getRelevantAuthor(), authorName);
+					if (EntityResolutionAdapter.areSame(o2.getRelevantAuthor(),authorName))
+						d2 = 0;
+					else
+						d2 = Relevance.calcRelevance(o2.getRelevantAuthor(), authorName);
 				}
 				if (d1<d2)return -1;
 				if (d1>d2)return 1;

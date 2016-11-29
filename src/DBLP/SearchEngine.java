@@ -67,6 +67,11 @@ public class SearchEngine extends JFrame {
         
     	Adapter.setXMLFileLocation("sample.xml");
     	EntityResolutionAdapter.initialize();
+    	
+    	java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
+    	x1.add(3);
+    	new QueryFactory("moreThanK", null, x1);
+    	
     	/*java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
     	x.add("relSort");
@@ -82,14 +87,16 @@ public class SearchEngine extends JFrame {
     	p2 = (new QueryFactory("findByAuthor",x,y)).getPublications();
     	System.out.println(p1.size()+" "+p2.size());*/
     	
-    	Iterator<String> mapIter = EntityResolutionAdapter.getAuthorAliases().keySet().iterator();
+    	/*Iterator<String> mapIter = EntityResolutionAdapter.getAuthorAliases().keySet().iterator();
     	
     	while (mapIter.hasNext()){
     		String key = mapIter.next();
     		System.out.println("Key: "+key+" Value: "+EntityResolutionAdapter.getAuthorAliases().get(key));
     	}
-    	
-    	System.out.print(EntityResolutionAdapter.areSame("Stephan Dehl", "Takatoyo Umemoto"));
+    	System.out.println(EntityResolutionAdapter.areSame("Stephan Diehl", "Stephan D."));
+    	System.out.println(EntityResolutionAdapter.areSame("Stephan Diehl", "Takatoyo Umemoto"));
+    	System.out.println(EntityResolutionAdapter.areSame("Stefandoesntexist", "Takatoyo Umemoto"));
+    	*/
     	
     	/*
     	 * Format for QueryFactory

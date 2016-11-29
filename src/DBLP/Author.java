@@ -11,13 +11,22 @@ public class Author {
 	private String additionalNotes;
 	private List<Publication> papers;
 	private String key;
+	private int count;
+	
+	public void incrementCount(){
+		count++;
+	}
+	
+	public int getCount(){
+		return count;
+	}
 	
 	public Author(String key) {
 		this.key = key;
 	}
 	
 	public Author(){
-		
+		count = 0;
 	}
 	
 	public void setKey(String key){

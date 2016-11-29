@@ -66,9 +66,8 @@ public class AuthorNameParser extends XMLParser {
 		depth--;
 		if (!disabled){
 			if (qName.equals("author")){	// Do we need to check is author is the guy we want
-				authorList.add(stringBuilder);
-				
-				if (stringBuilder.equals(theAuthorName)){
+				authorList.add(stringBuilder);				
+				if (stringBuilder.equals(theAuthorName) || EntityResolutionAdapter.areSame(stringBuilder, theAuthorName)){
 					theAuthor.setPrimaryName(theAuthorName);
 					prevName = stringBuilder;
 					insidePublication = true;
@@ -90,32 +89,21 @@ public class AuthorNameParser extends XMLParser {
 						authorFlag = false; // It was for author, author has been located
 						if (stringBuilder.equals("Home Page")){   // Person's DBLP home page
 							stringBuilder = "";
-							authorList = null;
 							disabled = true;	// Disabled till depth becomes 1 again, i.e. new record comes
 						}
 						else{
 							publications.add(new Publication());
 							publications.get(publications.size()-1).setAuthorNameList(authorList);
 							publications.get(publications.size()-1).setRelevantAuthor(prevName);
-							authorList = null;
 							publications.get(publications.size()-1).setTitle(stringBuilder);
 						}
+						authorList = null;
 					}
-					else if (qName.equals("year")){
-						publications.get(publications.size()-1).setYear((stringBuilder));
-					}
-					else if (qName.equals("pages")){
-						publications.get(publications.size()-1).setNumPages((stringBuilder));
-					}
-					else if (qName.equals("volume")){
-						publications.get(publications.size()-1).setVolume(stringBuilder);
-					}
-					else if (qName.equals("journal") || qName.equals("booktitle")){
-						publications.get(publications.size()-1).setJournalBook(stringBuilder);
-					}
-					else if (qName.equals("url")){
-						publications.get(publications.size()-1).setUrl(stringBuilder);
-					}
+					else if (qName.equals("year"))	publications.get(publications.size()-1).setYear((stringBuilder));
+					else if (qName.equals("pages"))	publications.get(publications.size()-1).setNumPages((stringBuilder));
+					else if (qName.equals("volume"))publications.get(publications.size()-1).setVolume(stringBuilder);
+					else if (qName.equals("journal") || qName.equals("booktitle"))publications.get(publications.size()-1).setJournalBook(stringBuilder);
+					else if (qName.equals("url"))publications.get(publications.size()-1).setUrl(stringBuilder);
 				}
 			}
 		}

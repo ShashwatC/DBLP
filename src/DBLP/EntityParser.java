@@ -1,9 +1,7 @@
 package DBLP;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.xml.sax.Attributes;
@@ -31,7 +29,6 @@ public class EntityParser extends XMLParser {
 		if (qName.equals("www")){
 			if (attributes.getValue("key").substring(0, 9).equals("homepages")){
 				curKey = attributes.getValue("key");
-				System.out.println("ye :" + curKey);
 				insidewww = true;
 			}	
 		}
@@ -49,7 +46,8 @@ public class EntityParser extends XMLParser {
 		}
 		else if (insideAuthor && qName.equals("author")){
 			insideAuthor = false;
-			mapping.put(authorName, curKey);
+			if (!mapping.containsKey(authorName))			// Ideally this should always be true
+				mapping.put(authorName, curKey);
 			authorName = "";
 		}
 	}

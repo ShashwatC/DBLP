@@ -16,8 +16,8 @@ public class MoreThanKAdapter extends Adapter{
 		return instance;
 	}
 	
-	public List<Publication> parseQuery(int k){
+	public List<String> parseQuery(int k){
 		MoreThanKParser p1 = new MoreThanKParser(XMLfile,k);
-		return p1.getPublications();
+		return p1.getAuthors();
 	}
 }
