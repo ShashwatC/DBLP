@@ -101,8 +101,8 @@ public class Query1Pan extends JPanel {
         else if ((customRange1T.isEmpty() ^ customRange2T.isEmpty()))
             return null;
         ///< all year empty not allowed (not sure?)
-        else if (sinceYearT.isEmpty() && customRange1T.isEmpty() && customRange2T.isEmpty())
-            return null;
+        //else if (sinceYearT.isEmpty() && customRange1T.isEmpty() && customRange2T.isEmpty())
+        //  return null;
         ///< one radio button must be selected (?)
         //else if (!sortYearS && !sortRelS)
         //    return null;
@@ -154,6 +154,9 @@ public class Query1Pan extends JPanel {
         else if (customR1 != 0 && customR2 != 0) {
             arg2.add(Math.max(sinceY, customR1));
             arg2.add(customR2);
+        }
+        else if (sinceY == 0 && customR1 == 0 && customR2 == 0) {
+            arg2 = null;
         }
         
         ArrayList<Object> ret = new ArrayList<Object>();
