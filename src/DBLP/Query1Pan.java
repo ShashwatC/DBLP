@@ -47,12 +47,13 @@ public class Query1Pan extends JPanel {
         nameTitleF = new JTextField();
 
         PrettyLabel sinceYearL = new PrettyLabel("Since Year");
-        sinceYearF = new JTextField("YYYY");
+        sinceYearF = new JTextField();
 
         PrettyLabel customRangeL = new PrettyLabel("Custom Range");
-        customRange1F = new JTextField("YYYY");
-        customRange2F = new JTextField("YYYY");
+        customRange1F = new JTextField();
+        customRange2F = new JTextField();
         JPanel customRangeF = new JPanel();
+        customRangeF.setLayout(new BoxLayout(customRangeF, BoxLayout.X_AXIS));
         customRangeF.add(customRange1F);
         customRangeF.add(new PrettyLabel("-"));
         customRangeF.add(customRange2F);
@@ -163,6 +164,9 @@ public class Query1Pan extends JPanel {
             arg2 = null;
         }
         
+        for (String tmp : arg1)
+            System.out.println(tmp);
+
         ArrayList<Object> ret = new ArrayList<Object>();
         ret.add(arg0);
         ret.add(arg1);
