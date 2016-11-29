@@ -13,6 +13,6 @@ public abstract class Query {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public abstract void parseQuery();
+	public abstract List<Publication> parseQuery();
 
 }

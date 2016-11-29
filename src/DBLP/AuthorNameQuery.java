@@ -30,11 +30,12 @@ public class AuthorNameQuery extends Query{
 	}
 
 	@Override
-	public void parseQuery() {
+	public List<Publication> parseQuery() {
 		// TODO Auto-generated method stub
 		theAuthor = AuthorNameAdapter.getInstance().parseQuery(name);
 		if (theAuthor.getPrimaryName()==null){
 			System.out.println("No author by that name");
+			return null;
 		}
 		else{
 			System.out.println("Author Found");
@@ -59,6 +60,7 @@ public class AuthorNameQuery extends Query{
 				System.out.println();
 				ctr++;
 			}
+			return theAuthor.getPapers();
 		}
 	}
 

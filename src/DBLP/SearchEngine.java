@@ -68,14 +68,17 @@ public class SearchEngine extends JFrame {
     	java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
     	x.add("relSort");
+    	List<Publication> p1;
+    	List<Publication> p2;
     	//x.add("since");
     	ArrayList<Integer> y = new ArrayList<Integer>();
     	//y.add(1972);
-    	new QueryFactory("findByTitleTags",x,y);
+    	p1 = (new QueryFactory("findByTitleTags",x,y)).getPublications();
     	//x.set(2, "between");
     	//y.add(1982);
     	x.set(0,new String("E. F. Codd") );
-    	new QueryFactory("findByAuthor",x,y);
+    	p2 = (new QueryFactory("findByAuthor",x,y)).getPublications();
+    	System.out.println(p1.size()+" "+p2.size());
     	
     	/*
     	 * Format for QueryFactory
@@ -94,7 +97,8 @@ public class SearchEngine extends JFrame {
     	 * arg1 = null
     	 * arg2 = (integer ArrayList) of size 1
     	 */
-    	    	
+    	
+    	
     	SearchEngine se = new SearchEngine();
         se.setVisible(true);
     }

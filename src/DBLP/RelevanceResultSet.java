@@ -43,7 +43,6 @@ public class RelevanceResultSet extends ResultSet{
 					d1 = Relevance.calcRelevance(o1.getRelevantAuthor(), authorName);
 					d2 = Relevance.calcRelevance(o2.getRelevantAuthor(), authorName);
 				}
-				System.out.println(d1+" "+d2);
 				if (d1<d2)return -1;
 				if (d1>d2)return 1;
 				return 0;

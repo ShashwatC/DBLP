@@ -31,11 +31,12 @@ public class TitleTagQuery extends Query{
 	}
 
 	@Override
-	public void parseQuery() {
+	public List<Publication> parseQuery() {
 		// TODO Auto-generated method stub
 		publications = TitleTagAdapter.getInstance().parseQuery(title);
 		if (publications.size()==0){
 			System.out.println("No publication with that title tag");
+			return null;
 		}
 		else{
 			System.out.println("Publications found");
@@ -57,6 +58,7 @@ public class TitleTagQuery extends Query{
 				System.out.println();
 				ctr++;
 			}
+			return publications;
 		}
 	}
 	
