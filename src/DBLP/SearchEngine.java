@@ -32,6 +32,8 @@ public class SearchEngine extends JFrame {
         queryInputPan = new QueryInputPanel();
         queryOutputPan = new QueryOutputPanel();
         
+        queryInputPan.addListener(queryOutputPan);
+        
         JPanel topPan = new JPanel();
         topPan.setLayout(new BoxLayout(topPan, BoxLayout.Y_AXIS));
         

@@ -77,6 +77,8 @@ public class Query1Pan extends JPanel {
     
     public ArrayList<? extends Object> formContentsValid() {
         
+        String searchByT = (String)searchByBox.getSelectedItem();
+        
         String nameTitleT = nameTitleF.getText();
         String sinceYearT = sinceYearF.getText();
         String customRange1T = customRange1F.getText();
@@ -85,23 +87,25 @@ public class Query1Pan extends JPanel {
         boolean sortYearS = sortYearB.isSelected();
         boolean sortRelS = sortRelB.isSelected();
         
+        ///< search type must be selected
+        if (searchByT.equals("Search By"))
+            return null;
         ///< empty name/title not allowed
-        if (nameTitleT.isEmpty())
+        else if (nameTitleT.isEmpty())
             return null;
-        ///< if both sinceYear and customRange exist, clash, not allowed
-        else if (!sinceYearT.isEmpty() && 
-                !(customRange1T.isEmpty() && customRange2T.isEmpty()))
-            return null;
-        ///< if no sinceYear and only one out of customRange is defined
-        else if (sinceYearT.isEmpty() &&
-                (customRange1T.isEmpty() ^ customRange2T.isEmpty()))
+        ///< if both sinceYear and customRange exist, clash, not allowed (?)
+        //else if (!sinceYearT.isEmpty() && 
+        //        !(customRange1T.isEmpty() && customRange2T.isEmpty()))
+        //    return null;
+        ///< if only one out of customRange is defined
+        else if ((customRange1T.isEmpty() ^ customRange2T.isEmpty()))
             return null;
         ///< all year empty not allowed (not sure?)
         else if (sinceYearT.isEmpty() && customRange1T.isEmpty() && customRange2T.isEmpty())
             return null;
-        ///< one radio button must be selected
-        else if (!sortYearS && !sortRelS)
-            return null;
+        ///< one radio button must be selected (?)
+        //else if (!sortYearS && !sortRelS)
+        //    return null;
         
         ///< checking for numerical values; if not, invalid
         if (!sinceYearT.isEmpty() && !sinceYearT.chars().allMatch(Character::isDigit))
@@ -112,14 +116,50 @@ public class Query1Pan extends JPanel {
             return null;
                     
         ///< Return appropriate list of params for Model, Parser, whatever
-        ///< Query type?
+        ///< Following API for QueryFactory:
+        String arg0 = new String();
+        ArrayList<String> arg1 = new ArrayList<String>();
+        ArrayList<Integer> arg2 = new ArrayList<Integer>();
+        
+        if (searchByT.equals("Author name"))
+            arg0 = "findByAuthor";
+        else if (searchByT.equals("Title tags"))
+            arg0 = "findByTitleTags";
+        
+        arg1.add(nameTitleT);
+        
+        if (sortYearS)
+            arg1.add("dateSort");
+        else if (sortRelS)
+            arg1.add("relSort");
+        
+        int sinceY = 0;
+        int customR1 = 0;
+        int customR2 = 0;
+        
+        if (!sinceYearT.isEmpty()) {
+            arg1.add("since");
+            sinceY = Integer.parseInt(sinceYearT);
+        }
+        if (!customRange1T.isEmpty() && !customRange2T.isEmpty()) {
+            arg1.add("between");
+            customR1 = Integer.parseInt(customRange1T);
+            customR2 = Integer.parseInt(customRange2T);
+        }
+        
+        if (customR1 > customR2)
+            return null;
+        if (sinceY != 0 && customR1 == 0 && customR2 == 0)
+            arg2.add(sinceY);
+        else if (customR1 != 0 && customR2 != 0) {
+            arg2.add(Math.max(sinceY, customR1));
+            arg2.add(customR2);
+        }
+        
         ArrayList<Object> ret = new ArrayList<Object>();
-        ret.add(nameTitleT);
-        ret.add(sinceYearT);
-        ret.add(customRange1T);
-        ret.add(customRange2T);
-        ret.add(sortYearS);
-        ret.add(sortRelS);
+        ret.add(arg0);
+        ret.add(arg1);
+        ret.add(arg2);
         
         return ret;
     }

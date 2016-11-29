@@ -6,11 +6,12 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /** \class QueryOutputPanel
  *  \brief Outputs search results in tabular form.
  */
-public class QueryOutputPanel extends JPanel {
+public class QueryOutputPanel extends JPanel implements ListenerPan {
     PrettyLabel nofResL;
     QTable table;
     PrettyButton nextB;
@@ -69,7 +70,7 @@ public class QueryOutputPanel extends JPanel {
         this.add(nextB);
     }
     
-    public void setQueryData(int qType, ArrayList<Object> queryData) {
+    public void setQueryData(int qType, ArrayList<? extends Object> queryData) {
         this.queryData = queryData;
         this.pos = 0;
         this.qType = qType;
