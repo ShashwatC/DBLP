@@ -1,5 +1,12 @@
 package DBLP;
 
+/** \class QueryFactory
+ *  \brief utilizing factory pattern to make querying from the GUI a simpler job
+ *  
+ */
+
+
+
 import java.util.List;
 
 public class QueryFactory {

@@ -1,5 +1,10 @@
 package DBLP;
 
+/** \class EntityParser
+ *  \brief Concrete subclass of Parser, using SAX it find out which entities are similar
+ *  
+ */
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;

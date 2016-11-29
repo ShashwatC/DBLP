@@ -1,5 +1,11 @@
 package DBLP;
 
+/** \class AuthorNameAdapter
+ *  \brief Concrete subclass of Adapter, translates entity resolution queries to entity resolution parsers
+ *  
+ */
+
+
 import java.util.Map;
 
 public class EntityResolutionAdapter extends Adapter{
