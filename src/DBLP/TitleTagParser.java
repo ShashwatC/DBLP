@@ -68,7 +68,7 @@ public class TitleTagParser extends XMLParser{
 			
 			else if (qName.equals("title")){ // If it's a title, decide whether to take it, or leave it and everything that comes along
 				int relevance = Relevance.calcRelevance(stringBuilder, titleTag);
-				if (relevance>relevanceLimit || stringBuilder.equals("Home Page") || stringBuilder.charAt(0)=='('){   	// This is not the publication we're looking for
+				if (relevance>Math.max(relevanceLimit,stringBuilder.length()/5) || stringBuilder.equals("Home Page") || stringBuilder.charAt(0)=='('){   	// This is not the publication we're looking for
 					disabled = true;	
 				}
 				else{  		

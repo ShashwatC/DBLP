@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /** \class SearchEngine
@@ -65,7 +66,8 @@ public class SearchEngine extends JFrame {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
         
     	Adapter.setXMLFileLocation("sample.xml");
-    	java.util.List<String> x = new java.util.ArrayList<String>();
+    	EntityResolutionAdapter.initialize();
+    	/*java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
     	x.add("relSort");
     	List<Publication> p1;
@@ -78,7 +80,16 @@ public class SearchEngine extends JFrame {
     	//y.add(1982);
     	x.set(0,new String("E. F. Codd") );
     	p2 = (new QueryFactory("findByAuthor",x,y)).getPublications();
-    	System.out.println(p1.size()+" "+p2.size());
+    	System.out.println(p1.size()+" "+p2.size());*/
+    	
+    	Iterator<String> mapIter = EntityResolutionAdapter.getAuthorAliases().keySet().iterator();
+    	
+    	while (mapIter.hasNext()){
+    		String key = mapIter.next();
+    		System.out.println("Key: "+key+" Value: "+EntityResolutionAdapter.getAuthorAliases().get(key));
+    	}
+    	
+    	System.out.print(EntityResolutionAdapter.areSame("Stephan Dehl", "Takatoyo Umemoto"));
     	
     	/*
     	 * Format for QueryFactory
@@ -99,7 +110,7 @@ public class SearchEngine extends JFrame {
     	 */
     	
     	
-    	SearchEngine se = new SearchEngine();
-        se.setVisible(true);
+    	//SearchEngine se = new SearchEngine();
+        //se.setVisible(true);
     }
 }

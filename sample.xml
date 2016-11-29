@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE dblp SYSTEM "dblp.dtd">
 <dblp>
+
+<www key="homepages/d/StephanDiehl">
+<author>Stephan Diehl</author>
+<author>Stephan D.</author>
+<author>S. Diehl</author>
+<title>Home Page</title>
+<url>http://www.st.uni-trier.de/~diehl/</url>
+</www>
+
+
 <www mdate="2005-10-06" key="persons/Ley93">
 <author>Michael Ley</author>
 <title>DBLP.uni-trier.de: Computer Science Bibliography</title>

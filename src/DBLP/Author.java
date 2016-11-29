@@ -10,9 +10,22 @@ public class Author {
 	private String url;
 	private String additionalNotes;
 	private List<Publication> papers;
+	private String key;
 	
-	public Author() {
-		// TODO Auto-generated constructor stub
+	public Author(String key) {
+		this.key = key;
+	}
+	
+	public Author(){
+		
+	}
+	
+	public void setKey(String key){
+		this.key = key;
+	}
+	
+	public String getKey(){
+		return key;
 	}
 	
 	public void addPaper(Publication paper){

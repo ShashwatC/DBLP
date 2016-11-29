@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AuthorNameQuery extends Query{
 	private String name;
-	private Author theAuthor;
+	private List<Publication> publications;
 	
 	public AuthorNameQuery(List<String> parameters, List<Integer> years) {
 		super(parameters,years);
@@ -13,33 +13,32 @@ public class AuthorNameQuery extends Query{
 	}
 	
 	private void sortYear(){
-		theAuthor.setPapers(SortedResultSet.getInstance(theAuthor.getPapers()).generateResultSet());
+		publications = SortedResultSet.getInstance(publications).generateResultSet();
 	}
 	
 	private void sortRel(){
-		theAuthor.setPapers(RelevanceResultSet.getInstance(theAuthor.getPapers(), null, name).generateResultSet());
+		publications = RelevanceResultSet.getInstance(publications, null, name).generateResultSet();
 	}
 	
 	private void since(){
 		System.out.println("YO");
-		theAuthor.setPapers(SinceResultSet.getInstance(theAuthor.getPapers(),parameters2.get(0)).generateResultSet());
+		publications = SinceResultSet.getInstance(publications,parameters2.get(0)).generateResultSet();
 	}
 	
 	private void between(){
-		theAuthor.setPapers(BetweenResultSet.getInstance(theAuthor.getPapers(),parameters2.get(0),parameters2.get(1)).generateResultSet());
+		publications = BetweenResultSet.getInstance(publications,parameters2.get(0),parameters2.get(1)).generateResultSet();
 	}
 
 	@Override
 	public List<Publication> parseQuery() {
-		// TODO Auto-generated method stub
-		theAuthor = AuthorNameAdapter.getInstance().parseQuery(name);
-		if (theAuthor.getPrimaryName()==null){
+		publications = AuthorNameAdapter.getInstance().parseQuery(name);
+		if (publications==null){
 			System.out.println("No author by that name");
 			return null;
 		}
 		else{
 			System.out.println("Author Found");
-			Collections.sort(theAuthor.getPapers());		// Forward sort every time 
+			Collections.sort(publications);		// Forward sort every time 
 			// Processing options
 			for (String option: parameters){
 				if (option.equals("dateSort"))sortYear();	// Reverse sort
@@ -49,7 +48,7 @@ public class AuthorNameQuery extends Query{
 			}
 			
 			int ctr = 1;
-			for (Publication p : theAuthor.getPapers()){
+			for (Publication p : publications){
 				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());
 				if (p.getAuthorNameList()!=null){
 					
@@ -60,7 +59,7 @@ public class AuthorNameQuery extends Query{
 				System.out.println();
 				ctr++;
 			}
-			return theAuthor.getPapers();
+			return publications;
 		}
 	}
 

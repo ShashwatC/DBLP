@@ -1,5 +1,7 @@
 package DBLP;
 
+import java.util.List;
+
 public class AuthorNameAdapter extends Adapter{
 	private static AuthorNameAdapter instance;
 
@@ -14,9 +16,11 @@ public class AuthorNameAdapter extends Adapter{
 		return instance;
 	}
 	
-	public Author parseQuery(String name){
+	public List<Publication> parseQuery(String name){
 		AuthorNameParser p1 = new AuthorNameParser(XMLfile,name);
-		return p1.getAuthor();
+		if (p1.getAuthor().getPrimaryName()!=null)
+			return p1.getAuthor().getPapers();
+		else return null;
 	}
 
 }
