@@ -10,22 +10,23 @@ import java.util.Map;
 import org.xml.sax.Attributes;
 
 public class MoreThanKParser extends XMLParser {
-	private List<Author> authors;
+	private List<MinimalAuthor> authors;
 	private int k;
-	private Map<String,Author> mapping;
+	private Map<String,MinimalAuthor> mapping;
 	private Map<String,String> keyToName;
 	private int depth;
 	private boolean insidePublication = false;
 	private boolean disabled = false;
 	private boolean authorFlag;
 	private String stringBuilder;
+	int count = 0;
 
 
 	public MoreThanKParser(File xmlInput, int k) {
 		super(xmlInput);
 		this.k = k;
-		mapping = new HashMap<String,Author>();
-		authors = new ArrayList<Author>();
+		mapping = new HashMap<String,MinimalAuthor>();
+		authors = new ArrayList<MinimalAuthor>();
 		keyToName = new HashMap<String,String>();
 		initParser();
 	}
@@ -35,7 +36,7 @@ public class MoreThanKParser extends XMLParser {
 		Iterator<String> keySetIterator = mapping.keySet().iterator();
 		while (keySetIterator.hasNext()){
 			String curName = keySetIterator.next();
-			Author curAuthor = mapping.get(curName);
+			MinimalAuthor curAuthor = mapping.get(curName);
 			if (curAuthor.getCount()>k){
 				if (keyToName.containsKey(curName)){
 					curName = keyToName.get(curName);
@@ -80,7 +81,8 @@ public class MoreThanKParser extends XMLParser {
 				// The stringBuilder is either the author Name, or a unique key
 				
 				if (!mapping.containsKey(stringBuilder)){
-					mapping.put(stringBuilder, new Author());
+					mapping.put(stringBuilder, new MinimalAuthor());
+					count++;
 				}
 				mapping.get(stringBuilder).incrementCount();
 			}

@@ -64,17 +64,17 @@ public class SearchEngine extends JFrame {
     
     public static void main(String[] args) {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
-        
-    	Adapter.setXMLFileLocation("sample.xml");
-    	EntityResolutionAdapter.initialize();   	
+    	Adapter.setXMLFileLocation("dblp.xml");
+    	EntityResolutionAdapter.initialize();   
+    	java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
+    	x1.add(200);
+    	new QueryFactory("moreThanK", null, x1);
+
     	SearchEngine se = new SearchEngine();
         se.setVisible(true);
     }
 }
 
-/*java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
-x1.add(3);
-new QueryFactory("moreThanK", null, x1);*/
 
 /*java.util.List<String> x = new java.util.ArrayList<String>();
 x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
