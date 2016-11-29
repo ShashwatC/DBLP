@@ -33,17 +33,17 @@ public class Query1Model extends QueryModel {
     public void refreshTable(ArrayList<? extends Object> objList, int start) {
         ArrayList<Publication> pubList = (ArrayList<Publication>)objList;
         
-        int end = (start + 20 <= pubList.size() ? start + 20 : pubList.size());
+        int end = (start + SearchEngine.NOFROWS <= pubList.size() ? start + SearchEngine.NOFROWS : pubList.size());
         int bigEnd=0;
-        if (end%20==0){
+        if (end%SearchEngine.NOFROWS==0){
         	bigEnd = end;
         }
         else{
-        	bigEnd = end + (20-(end%20));
+        	bigEnd = end + (SearchEngine.NOFROWS-(end%SearchEngine.NOFROWS));
         }
         
         for(int i = start; i < end; i++) {
-            int row = i % 20;
+            int row = i % SearchEngine.NOFROWS;
             Publication pub = pubList.get(i);            
             this.setValueAt(i, row, 0);
             

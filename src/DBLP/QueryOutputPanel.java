@@ -31,7 +31,7 @@ public class QueryOutputPanel extends JPanel implements ListenerPan {
         this.setMaximumSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         
         queryData = new ArrayList<Object>();
-        pos = 20;
+        pos = SearchEngine.NOFROWS;
         qType = 1;
         nofRes = 0;
         
@@ -55,12 +55,14 @@ public class QueryOutputPanel extends JPanel implements ListenerPan {
     private void reset() {
         QTable query1Table = new QTable(new Query1Model());
         QTable query2Table = new QTable(new Query2Model());
-       
+        QTable query3Table = new QTable(new Query3Model());
+        
         nofResL.setText(String.format("No. of results returned: %d", nofRes));
         
         switch(qType) {
             case 1: table = query1Table; break;
             case 2: table = query2Table; break;
+            case 3: table = query3Table; break;
             default: break;
         }
         
