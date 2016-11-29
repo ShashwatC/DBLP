@@ -97,8 +97,7 @@ public class SearchEngine extends JFrame {
     	 * arg1 = null
     	 * arg2 = (integer ArrayList) of size 1
     	 */
-    	
-    	
+   	
     	SearchEngine se = new SearchEngine();
         se.setVisible(true);
     }
