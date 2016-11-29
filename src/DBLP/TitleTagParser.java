@@ -72,7 +72,6 @@ public class TitleTagParser extends XMLParser{
 					disabled = true;	
 				}
 				else{  		
-					System.out.println("Title: "+stringBuilder);
 					// This is the publication we're looking for
 					publications.add(new Publication());
 					publications.get(publications.size()-1).setAuthorNameList(authorList);
@@ -83,7 +82,6 @@ public class TitleTagParser extends XMLParser{
 			}
 			else if (depth==2){				
 				if (qName.equals("year")){
-					System.out.println("Year: "+stringBuilder);
 					publications.get(publications.size()-1).setYear((stringBuilder));
 				}
 				else if (qName.equals("pages")){

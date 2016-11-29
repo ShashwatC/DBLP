@@ -67,7 +67,7 @@ public class SearchEngine extends JFrame {
     	Adapter.setXMLFileLocation("sample.xml");
     	java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
-    	//x.add("dateSort");
+    	x.add("relSort");
     	//x.add("since");
     	ArrayList<Integer> y = new ArrayList<Integer>();
     	//y.add(1972);

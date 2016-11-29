@@ -18,7 +18,7 @@ public class TitleTagQuery extends Query{
 	}
 	
 	private void sortRel(){
-		
+		publications = RelevanceResultSet.getInstance(publications, title, null).generateResultSet();
 	}
 	
 	private void since(){

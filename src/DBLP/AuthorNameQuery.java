@@ -17,7 +17,7 @@ public class AuthorNameQuery extends Query{
 	}
 	
 	private void sortRel(){
-		
+		theAuthor.setPapers(RelevanceResultSet.getInstance(theAuthor.getPapers(), null, name).generateResultSet());
 	}
 	
 	private void since(){

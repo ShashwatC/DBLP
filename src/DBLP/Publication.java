@@ -9,6 +9,7 @@ public class Publication implements Comparable<Publication>{
 	private String title;
 	private List<Author> authorList;
 	private List<String> authorNameList;
+	private String relevantAuthor;
 	private String numPages;
 	private String year;
 	private String volume;
@@ -17,6 +18,14 @@ public class Publication implements Comparable<Publication>{
 	
 	public Publication() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public String getRelevantAuthor(){
+		return relevantAuthor;
+	}
+	
+	public void setRelevantAuthor(String relevantAuthor){
+		this.relevantAuthor = relevantAuthor;
 	}
 	
 	public List<String> getAuthorNameList(){

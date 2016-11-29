@@ -1,7 +1,7 @@
 package DBLP;
 
 public class Relevance {
-
+	// Levenshtein distance between s1 and s2, using DP
 	public static int calcRelevance(String s1, String s2) {
 	    s1 = s1.toLowerCase();
 	    s2 = s2.toLowerCase();

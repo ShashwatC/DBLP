@@ -17,6 +17,7 @@ public class AuthorNameParser extends XMLParser {
 	private List<String> authorList;
 	private boolean authorFlag;
 	private int relevanceLimit;
+	private String prevName;
 
 	public AuthorNameParser(File xmlInput, String theAuthorName) {
 		super(xmlInput);
@@ -69,11 +70,13 @@ public class AuthorNameParser extends XMLParser {
 				
 				if (stringBuilder.equals(theAuthorName)){
 					theAuthor.setPrimaryName(theAuthorName);
+					prevName = stringBuilder;
 					insidePublication = true;
 				}
 				else if (Relevance.calcRelevance(stringBuilder, theAuthorName)<=relevanceLimit){
 					if (theAuthor.getPrimaryName()==null)
 						theAuthor.setPrimaryName(theAuthorName);
+					prevName = stringBuilder;
 					insidePublication = true;
 				}
 			}
@@ -93,6 +96,7 @@ public class AuthorNameParser extends XMLParser {
 						else{
 							publications.add(new Publication());
 							publications.get(publications.size()-1).setAuthorNameList(authorList);
+							publications.get(publications.size()-1).setRelevantAuthor(prevName);
 							authorList = null;
 							publications.get(publications.size()-1).setTitle(stringBuilder);
 						}
