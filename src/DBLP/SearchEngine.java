@@ -13,6 +13,10 @@ import java.util.List;
  *  Contains Header, QueryInputPanel, QueryOutputPanel
  */
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class SearchEngine extends JFrame {
     
     static final Font PFONT = new Font("Arial", Font.PLAIN, 13);
@@ -65,12 +69,15 @@ public class SearchEngine extends JFrame {
         this.getContentPane().repaint();
     }
     
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
     	Adapter.setXMLFileLocation("sample.xml");
     	EntityResolutionAdapter.initialize();   
 
-    	//SearchEngine se = new SearchEngine();
+    	//SearchEngine se =	 new SearchEngine();
         //se.setVisible(true);
     	java.util.List<String> x = new java.util.ArrayList<String>();
     	x.add("Relational");

@@ -5,6 +5,10 @@ package DBLP;
  *  
  */
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class MinimalAuthor {
 	private int count;
 	

@@ -9,12 +9,17 @@ package DBLP;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class BetweenResultSet extends ResultSet {
     private static BetweenResultSet instance;
     private int startYear;
     private int endYear;
 
 
+   
     public BetweenResultSet(List<Publication> publications, int startYear, int endYear) {
         super(publications);
         this.startYear = startYear;

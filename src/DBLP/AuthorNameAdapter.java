@@ -7,6 +7,10 @@ package DBLP;
 
 import java.util.List;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class AuthorNameAdapter extends Adapter{
 	private static AuthorNameAdapter instance;
 

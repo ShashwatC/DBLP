@@ -3,6 +3,10 @@ package DBLP;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class PrettyLabel extends JLabel {
 
     public PrettyLabel(String txt, Font font) {

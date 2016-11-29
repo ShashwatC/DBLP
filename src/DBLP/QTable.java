@@ -2,6 +2,10 @@ package DBLP;
 
 import javax.swing.*;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class QTable extends JTable {
     QueryModel model;
     

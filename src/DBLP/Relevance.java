@@ -6,6 +6,10 @@ package DBLP;
  */
 
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class Relevance {
 	/**
      * Levenshtein distance between s1 and s2, using DP (more the distance, less the relevance).

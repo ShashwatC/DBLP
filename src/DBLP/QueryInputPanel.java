@@ -9,6 +9,10 @@ import java.util.List;
 /** \class QueryInputPanel
  *  \brief Inputs various params for different kinds of queries
  */
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class QueryInputPanel extends JPanel {
     private JComboBox queryBox;
     private Query1Pan query1Pan;

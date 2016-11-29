@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class Query1Pan extends JPanel {
     JComboBox searchByBox;
     JPanel textFieldPan;

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public abstract class QueryModel extends AbstractTableModel {
     private Object[][] data;
     

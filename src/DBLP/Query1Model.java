@@ -2,6 +2,10 @@ package DBLP;
 
 import java.util.ArrayList;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class Query1Model extends QueryModel {
     private String[] columnNames = {"S.no",
             "Authors",

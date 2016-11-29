@@ -15,6 +15,10 @@ import java.util.Map;
 
 import org.xml.sax.Attributes;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class MoreThanKParser extends XMLParser {
 	private List<MinimalAuthor> authors;
 	private int k;

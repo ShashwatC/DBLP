@@ -10,6 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
+
 public class RelevanceResultSet extends ResultSet{
 	private static RelevanceResultSet instance;
 	private String title;

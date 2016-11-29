@@ -8,6 +8,10 @@ package DBLP;
 
 import java.util.Map;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class EntityResolutionAdapter extends Adapter{
 	private static Map<String,String> mapping;		// Map from Author Name to "Key"
 	

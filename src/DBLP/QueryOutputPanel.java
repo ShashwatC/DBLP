@@ -11,6 +11,10 @@ import java.util.List;
 /** \class QueryOutputPanel
  *  \brief Outputs search results in tabular form.
  */
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class QueryOutputPanel extends JPanel implements ListenerPan {
     PrettyLabel nofResL;
     QTable table;

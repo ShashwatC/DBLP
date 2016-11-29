@@ -6,6 +6,10 @@ import java.awt.*;
 /** \class Header
  *  \brief Displays big-ass heading in window
  */
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class Header extends JPanel {
     public Header() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

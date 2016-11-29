@@ -1,3 +1,4 @@
+
 package DBLP;
 
 import java.io.File;
@@ -11,6 +12,10 @@ import java.io.File;
  */
 
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public abstract class Adapter {
 	protected File XMLfile;
 	private static String XMLFileLocation;

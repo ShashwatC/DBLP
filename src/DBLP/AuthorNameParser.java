@@ -12,6 +12,10 @@ import java.util.List;
 
 import org.xml.sax.Attributes;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class AuthorNameParser extends XMLParser {
 	private int depth;
 	private Author theAuthor;

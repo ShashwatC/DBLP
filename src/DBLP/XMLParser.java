@@ -21,6 +21,10 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public abstract class XMLParser extends DefaultHandler {
 	private Collection<Publication> publications;
 	private Collection<Author> author;

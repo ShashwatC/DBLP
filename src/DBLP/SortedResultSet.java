@@ -9,6 +9,10 @@ import java.util.Collections;
 import java.util.List;
 
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class SortedResultSet extends ResultSet{
 	private static SortedResultSet instance;
 

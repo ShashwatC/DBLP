@@ -8,6 +8,10 @@ package DBLP;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class SinceResultSet extends ResultSet {
     private static SinceResultSet instance;
     private int startYear;
