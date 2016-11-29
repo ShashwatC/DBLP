@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /** \class QueryInputPanel
@@ -133,8 +134,11 @@ public class QueryInputPanel extends JPanel {
         
         if (currQType == 1) {
             List<Publication> pubList = queryFactory.getPublications();
-            if (pubList != null)
+            if (pubList != null) {
                 objList = new ArrayList<Publication>(pubList);
+                if (((ArrayList<String>)params.get(1)).size() == 1)
+                    Collections.reverse(objList);
+            }
         }
         else if (currQType == 2) {
             List<String> authList = queryFactory.getAuthorNames();

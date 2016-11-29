@@ -83,6 +83,9 @@ public class SearchEngine extends JFrame {
     	x.add("Relational");
     	x.add("relSort");
     	new QueryFactory("findByTitleTags",x,null);
+    	
+    	SearchEngine se = new SearchEngine();
+    	se.setVisible(true);
     }
 }
 
