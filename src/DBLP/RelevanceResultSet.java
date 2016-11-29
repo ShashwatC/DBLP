@@ -41,10 +41,13 @@ public class RelevanceResultSet extends ResultSet{
 			public int compare(Publication o1, Publication o2) {
 				int d1=0,d2=0;
 				if (title!=null){
-					d1 = Relevance.calcRelevance(o1.getTitle(), title);
-					d2 = Relevance.calcRelevance(o2.getTitle(), title);
+					d1 = Relevance.tagRelevance(o1.getTitle(), title);
+					d2 = Relevance.tagRelevance(o2.getTitle(), title);
+					if (d1<d2)return 1;
+					if (d1>d2)return -1;
+					return 0;
 				}
-				if (authorName!=null){
+				else{
 					// The names may be different but map to the same person. In that case, we will take
 					// distance = 0. So if Shashwat Chaudhary and S.C. are same entities, then
 					// Even though the strings are very different, we take relevance to be perfect
@@ -56,10 +59,11 @@ public class RelevanceResultSet extends ResultSet{
 						d2 = 0;
 					else
 						d2 = Relevance.calcRelevance(o2.getRelevantAuthor(), authorName);
+					if (d1<d2)return -1;
+					if (d1>d2)return 1;
+					return 0;
 				}
-				if (d1<d2)return -1;
-				if (d1>d2)return 1;
-				return 0;
+				
 			}
 			
 		});

@@ -27,5 +27,42 @@ public class Relevance {
 	    }
 	    return rel[s2.length()];
 	}
+	
+	/**
+     * Levenshtein distance not useful for tag based searching, finds number of matching tags
+     */
+	public static int tagRelevance(String title, String titleTags){
+		title = title.toLowerCase();
+		titleTags = titleTags.toLowerCase();
+		String[] tags = titleTags.split(" ");
+		int sum = 0;
+		for (String tag: tags){
+			sum += substringMatch(tag, title);
+		}
+		return sum;
+	}
+	
+	private static int substringMatch(String tag, String title){
+		int countOccurences=0;
+		int i = 0;
+		for (int j=0; j<title.length(); j++){
+			if (i==tag.length()){
+				i = 0;
+				countOccurences++;
+			}
+			if (title.charAt(j)==tag.charAt(i)){
+				i++;
+			}
+			else{
+				i=0;
+			}
+		}
+		if (i==tag.length()){
+			countOccurences++;
+		}
+		System.out.println(title+" "+countOccurences);
+
+		return countOccurences;
+	}
 
 }

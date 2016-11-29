@@ -19,12 +19,10 @@ public class TitleTagParser extends XMLParser{
 	private String stringBuilder;
 	private List<String> authorList;
 	private boolean disabled;
-	private int relevanceLimit;
 	
 	public TitleTagParser(File xmlInput, String titleTag) {
 		super(xmlInput);
 		this.titleTag = titleTag;
-		relevanceLimit = titleTag.length()/5;			// Approx. 20% similarity threshold
 		publications = new ArrayList<Publication>();
 		super.initParser();
 		// TODO Auto-generated constructor stub
@@ -73,8 +71,8 @@ public class TitleTagParser extends XMLParser{
 			
 			
 			else if (qName.equals("title")){ // If it's a title, decide whether to take it, or leave it and everything that comes along
-				int relevance = Relevance.calcRelevance(stringBuilder, titleTag);
-				if (relevance>Math.max(relevanceLimit,stringBuilder.length()/5) || stringBuilder.equals("Home Page") || stringBuilder.charAt(0)=='('){   	// This is not the publication we're looking for
+				int relevance = Relevance.tagRelevance(stringBuilder, titleTag);
+				if (relevance<1 || stringBuilder.equals("Home Page") || stringBuilder.charAt(0)=='('){   	// This is not the publication we're looking for
 					disabled = true;	
 				}
 				else{  		

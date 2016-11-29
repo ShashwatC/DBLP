@@ -163,6 +163,19 @@ public class Query1Pan extends JPanel {
         ret.add(arg0);
         ret.add(arg1);
         ret.add(arg2);
+        System.out.println("Arg0: "+arg0);
+        System.out.println("Arg1:");
+        if (arg1!=null){
+        	for (String s: arg1){
+        		System.out.println(s);
+        	}
+        }
+        System.out.println("Arg2:");
+        if (arg2!=null){
+        	for (int i: arg2){
+        		System.out.println(i);
+        	}
+        }
         
         return ret;
     }

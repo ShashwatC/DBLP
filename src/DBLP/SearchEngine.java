@@ -69,12 +69,13 @@ public class SearchEngine extends JFrame {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
     	Adapter.setXMLFileLocation("sample.xml");
     	EntityResolutionAdapter.initialize();   
-    	java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
-    	x1.add(200);
-    	new QueryFactory("moreThanK", null, x1);
 
-    	SearchEngine se = new SearchEngine();
-        se.setVisible(true);
+    	//SearchEngine se = new SearchEngine();
+        //se.setVisible(true);
+    	java.util.List<String> x = new java.util.ArrayList<String>();
+    	x.add("the");
+    	x.add("relSort");
+    	new QueryFactory("findByTitleTags",x,null);
     }
 }
 
