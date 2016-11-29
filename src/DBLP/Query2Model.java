@@ -7,6 +7,10 @@ public class Query2Model extends QueryModel {
             "Author"
     };
     
+    public Query2Model() {
+        super(SearchEngine.NOFROWS, 1);
+    }
+    
     public int getColumnCount() {
         return columnNames.length;
     }
@@ -17,15 +21,15 @@ public class Query2Model extends QueryModel {
     
     @Override
     public void refreshTable(ArrayList<? extends Object> objList, int start) {
-        ArrayList<Author> authList = (ArrayList<Author>)objList;
+        ArrayList<String> authList = (ArrayList<String>)objList;
         
         int end = (start + 20 <= authList.size() ? start + 20 : authList.size());
         
         for(int i = start; i < end; i++) {
             int row = i % 20;
-            Author auth = authList.get(i);
+            String auth = authList.get(i);
             
-            this.setValueAt(auth.getPrimaryName(), row, 0);
+            this.setValueAt(auth, row, 0);
         }
     }
 }

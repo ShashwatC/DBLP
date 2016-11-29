@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /** \class QueryInputPanel
  *  \brief Inputs various params for different kinds of queries
@@ -19,6 +20,8 @@ public class QueryInputPanel extends JPanel {
     
     private int currQType;
     
+    private ArrayList<ListenerPan> listenerList;
+    
     public QueryInputPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setMaximumSize(new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH));
@@ -28,6 +31,9 @@ public class QueryInputPanel extends JPanel {
         queryBox.setMaximumSize(queryBox.getPreferredSize());
         
         currQType = 0;
+        
+        listenerList = new ArrayList<ListenerPan>();
+        
         reset();
                 
         queryBox.addActionListener(new ActionListener() {
@@ -72,7 +78,7 @@ public class QueryInputPanel extends JPanel {
         query1Pan = new Query1Pan();
         query2Pan = new Query2Pan();
         searchResetPan = new SearchResetPan();
-        comp0List = new Component[5];
+        comp0List = new Component[3];
         comp1List = new Component[5];
         comp2List = new Component[5];
         
@@ -107,6 +113,35 @@ public class QueryInputPanel extends JPanel {
         System.arraycopy(comp0List, 0, this.comp0List, 0, comp0List.length);
     }
     
+    public void addListener(ListenerPan pan) {
+        listenerList.add(pan);
+    }
+    
+    public void notifyListeners(ArrayList<? extends Object> params) {
+        
+        ArrayList<? extends Object> objList = new ArrayList<Object>();
+        
+        QueryFactory queryFactory = new QueryFactory(
+                (String)params.get(0), 
+                (ArrayList<String>)params.get(1),
+                (ArrayList<Integer>)params.get(2)
+        );
+        
+        if (currQType == 1) {
+            List<Publication> pubList = queryFactory.getPublications();
+            if (pubList != null)
+                objList = new ArrayList<Publication>(pubList);
+        }
+        else if (currQType == 2) {
+            List<String> authList = queryFactory.getAuthorNames();
+            objList = new ArrayList<String>(authList);
+        }
+        
+        for (ListenerPan pan : listenerList) {
+            pan.setQueryData(currQType, objList);
+        }
+    }
+    
     private class SearchResetPan extends JPanel {
         PrettyLabel invalidL;
         PrettyButton searchB;
@@ -138,7 +173,7 @@ public class QueryInputPanel extends JPanel {
                     
                     if (params != null) {
                         invalidL.setVisible(false);
-                        ///< We pass it to the Model (Query, Parser, whatever)
+                        notifyListeners(params);
                     }
                     else {
                         invalidL.setVisible(true);

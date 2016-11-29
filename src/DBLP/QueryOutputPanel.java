@@ -6,11 +6,12 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /** \class QueryOutputPanel
  *  \brief Outputs search results in tabular form.
  */
-public class QueryOutputPanel extends JPanel {
+public class QueryOutputPanel extends JPanel implements ListenerPan {
     PrettyLabel nofResL;
     QTable table;
     PrettyButton nextB;
@@ -26,7 +27,7 @@ public class QueryOutputPanel extends JPanel {
         this.setMaximumSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         
         queryData = new ArrayList<Object>();
-        pos = 0;
+        pos = 20;
         qType = 1;
         nofRes = 0;
         
@@ -39,7 +40,7 @@ public class QueryOutputPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (pos < queryData.size() && qType != 0) {
                     table.getQueryModel().refreshTable(queryData, pos);
-                    pos += 20;
+                    pos += SearchEngine.NOFROWS;
                 }
             }
         });
@@ -59,17 +60,22 @@ public class QueryOutputPanel extends JPanel {
             default: break;
         }
         
+        table.getQueryModel().refreshTable(queryData, pos);
+        pos += SearchEngine.NOFROWS;
+        
         table.setPreferredScrollableViewportSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         table.setFillsViewportHeight(true);
         
         JScrollPane scrollPane = new JScrollPane(table);
+        
+        this.removeAll();
         
         this.add(nofResL);
         this.add(scrollPane);
         this.add(nextB);
     }
     
-    public void setQueryData(int qType, ArrayList<Object> queryData) {
+    public void setQueryData(int qType, ArrayList<? extends Object> queryData) {
         this.queryData = queryData;
         this.pos = 0;
         this.qType = qType;
