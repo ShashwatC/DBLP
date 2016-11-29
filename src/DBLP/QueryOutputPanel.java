@@ -27,7 +27,7 @@ public class QueryOutputPanel extends JPanel implements ListenerPan {
         this.setMaximumSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         
         queryData = new ArrayList<Object>();
-        pos = 0;
+        pos = 20;
         qType = 1;
         nofRes = 0;
         
@@ -40,7 +40,7 @@ public class QueryOutputPanel extends JPanel implements ListenerPan {
             public void actionPerformed(ActionEvent e) {
                 if (pos < queryData.size() && qType != 0) {
                     table.getQueryModel().refreshTable(queryData, pos);
-                    pos += 20;
+                    pos += SearchEngine.NOFROWS;
                 }
             }
         });
@@ -60,10 +60,15 @@ public class QueryOutputPanel extends JPanel implements ListenerPan {
             default: break;
         }
         
+        table.getQueryModel().refreshTable(queryData, pos);
+        pos += SearchEngine.NOFROWS;
+        
         table.setPreferredScrollableViewportSize(new Dimension((SearchEngine.FRAMEW*2)/3, SearchEngine.FRAMEH));
         table.setFillsViewportHeight(true);
         
         JScrollPane scrollPane = new JScrollPane(table);
+        
+        this.removeAll();
         
         this.add(nofResL);
         this.add(scrollPane);

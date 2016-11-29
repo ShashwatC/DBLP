@@ -132,10 +132,10 @@ public class QueryInputPanel extends JPanel {
             if (pubList != null)
                 objList = new ArrayList<Publication>(pubList);
         }
-        //else if (currQType == 2) {
-        //    List<Author> authList = queryFactory.getAuthors();
-        //    objList = new ArrayList<Author>(authList);
-        //}
+        else if (currQType == 2) {
+            List<String> authList = queryFactory.getAuthorNames();
+            objList = new ArrayList<String>(authList);
+        }
         
         for (ListenerPan pan : listenerList) {
             pan.setQueryData(currQType, objList);

@@ -19,16 +19,24 @@ public class Query2Pan extends JPanel {
     }
     
     public ArrayList<? extends Object> formContentsValid() {
-        ArrayList<String> ret = new ArrayList<String>();
-        
         String nofPubT = nofPubF.getText();
-        ret.add(nofPubT);
         
         if (nofPubT.isEmpty())
             return null;
         else if (!nofPubT.chars().allMatch(Character::isDigit))
             return null;
-        else
+        else {
+            String arg0 = new String("moreThanK");
+            ArrayList<String> arg1 = null;
+            ArrayList<Integer> arg2 = new ArrayList<Integer>();
+            arg2.add(Integer.parseInt(nofPubT));
+            
+            ArrayList<Object> ret = new ArrayList<Object>();
+            ret.add(arg0);
+            ret.add(arg1);
+            ret.add(arg2);
+            
             return ret;
+        }
     }
 }

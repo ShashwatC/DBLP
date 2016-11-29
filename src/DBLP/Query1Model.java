@@ -13,6 +13,10 @@ public class Query1Model extends QueryModel {
             "url"
     };
 
+    public Query1Model() {
+        super(SearchEngine.NOFROWS, 8);
+    }
+    
     public int getColumnCount() {
         return columnNames.length;
     }

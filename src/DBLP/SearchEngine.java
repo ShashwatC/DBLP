@@ -18,6 +18,7 @@ public class SearchEngine extends JFrame {
     static final Font PFONT = new Font("Arial", Font.PLAIN, 13);
     static final int FRAMEW = 800;
     static final int FRAMEH = 600;
+    static final int NOFROWS = 28;
     
     Header header;
     QueryInputPanel queryInputPan;
