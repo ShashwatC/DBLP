@@ -73,7 +73,7 @@ public class SearchEngine extends JFrame {
     	//SearchEngine se = new SearchEngine();
         //se.setVisible(true);
     	java.util.List<String> x = new java.util.ArrayList<String>();
-    	x.add("the");
+    	x.add("Relational");
     	x.add("relSort");
     	new QueryFactory("findByTitleTags",x,null);
     }

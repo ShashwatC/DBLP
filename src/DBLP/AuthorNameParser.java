@@ -2,7 +2,7 @@ package DBLP;
 
 
 /** \class AuthorNameParser
- *  \brief Concrete subclass of Parser, performs queries passed to it via adapter using SAX
+ *  \brief Concrete subclass of XMLParser, performs queries passed to it via adapter using SAX
  *  
  */
 
@@ -41,7 +41,7 @@ public class AuthorNameParser extends XMLParser {
 	}
 
 	@Override
-	public void startElement(String uri, String localName, String qName, Attributes attributes){
+	public void startElement(String uri, String localName, String qName, Attributes attributes){ /// startElement SAX function
 		if (depth==1){
 			authorList = null;
 			if (qName.equals("person")){
@@ -68,7 +68,7 @@ public class AuthorNameParser extends XMLParser {
 	}
 	
 	@Override
-	public void endElement(String uri, String localName, String qName){
+	public void endElement(String uri, String localName, String qName){ /// endElement SAX function
 		depth--;
 		if (!disabled){
 			if (qName.equals("author")){	// Do we need to check is author is the guy we want
@@ -116,7 +116,7 @@ public class AuthorNameParser extends XMLParser {
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length){
+	public void characters(char[] ch, int start, int length){ /// characters SAX function
 		if (!disabled && (authorFlag || insidePublication)){			
 			stringBuilder+=new String(ch,start,length);										
 		}		

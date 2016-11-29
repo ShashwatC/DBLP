@@ -2,7 +2,7 @@ package DBLP;
 
 
 /** \class ResultSet
- *  \brief Abstract class which defines how resultset generating classes should be
+ *  \brief Abstract class which defines how ResultSet generating classes should be
  *  
  *  It's subclasses use the protected publications variable set by it's constructor
  *  Concrete subclasses are used by concrete subclasses of query to order the data as required by user

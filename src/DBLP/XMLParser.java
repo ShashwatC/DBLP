@@ -30,7 +30,7 @@ public abstract class XMLParser extends DefaultHandler {
 		this.xmlInput = xmlInput;
 	}
 	
-	public void initParser(){
+	public void initParser(){	/// Initializes and runs the SAX Parser
 		System.out.println("Parsing started");
 		SAXParserFactory sParserFactory = SAXParserFactory.newInstance();
 		try {
@@ -54,12 +54,12 @@ public abstract class XMLParser extends DefaultHandler {
 	}
 	
 	@Override
-	public abstract void startElement(String uri, String localName, String qName, Attributes attributes);
+	public abstract void startElement(String uri, String localName, String qName, Attributes attributes);   
 	
 	@Override
-	public abstract void endElement(String uri, String localName, String qName);
+	public abstract void endElement(String uri, String localName, String qName); 
 	@Override
-	public abstract void characters(char[] ch, int start, int length);
+	public abstract void characters(char[] ch, int start, int length); 
 
 	@Override
     public void warning(SAXParseException exception) throws SAXException {

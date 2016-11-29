@@ -34,7 +34,7 @@ public class BetweenResultSet extends ResultSet {
     }
     
     @Override
-    public List<Publication> generateResultSet() {
+    public List<Publication> generateResultSet() { /// generates the resultSet
         Predicate<Publication> condition = p-> Integer.parseInt(p.getYear()) <= startYear;
         Predicate<Publication> condition2 = p-> Integer.parseInt(p.getYear()) >= endYear;
         publications.removeIf(condition);

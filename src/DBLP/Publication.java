@@ -3,8 +3,8 @@ package DBLP;
 import java.util.Date;
 import java.util.List;
 
-/** \class Publisher
- *  \brief Creates Publisher object
+/** \class Publication
+ *  \brief Creates Publication object
  *  
  *  Contains constructor, setter, getter, adder and increment functions
  *  

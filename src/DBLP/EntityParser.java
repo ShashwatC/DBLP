@@ -1,7 +1,7 @@
 package DBLP;
 
 /** \class EntityParser
- *  \brief Concrete subclass of Parser, using SAX it find out which entities are similar
+ *  \brief Concrete subclass of XMLParser, using SAX it find out which entities are similar
  *  
  */
 
@@ -25,12 +25,12 @@ public class EntityParser extends XMLParser {
 		initParser();
 	}
 	
-	public Map<String, String> getMapping(){
+	public Map<String, String> getMapping(){  ///< returns Map object
 		return mapping;
 	}
 	
 	@Override
-	public void startElement(String uri, String localName, String qName, Attributes attributes) {
+	public void startElement(String uri, String localName, String qName, Attributes attributes) { /// startElement SAX function
 		if (qName.equals("www")){
 			if (attributes.getValue("key").substring(0, 9).equals("homepages")){
 				curKey = attributes.getValue("key");
@@ -44,8 +44,8 @@ public class EntityParser extends XMLParser {
 	}
 
 	@Override
-	public void endElement(String uri, String localName, String qName) {
-		// TODO Auto-generated method stub
+	public void endElement(String uri, String localName, String qName) { /// endElement SAX function
+		// TODO Auto-generated method stub 
 		if (insidewww && qName.equals("www")){
 			insidewww = false;
 		}
@@ -58,7 +58,7 @@ public class EntityParser extends XMLParser {
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length) {
+	public void characters(char[] ch, int start, int length) { /// characters SAX function
 		// TODO Auto-generated method stub
 		if (insideAuthor)
 			authorName += new String(ch, start, length);

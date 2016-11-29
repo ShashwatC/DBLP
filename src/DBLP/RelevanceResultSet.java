@@ -34,7 +34,7 @@ public class RelevanceResultSet extends ResultSet{
 	}
 
 	@Override
-	public List<Publication> generateResultSet() {
+	public List<Publication> generateResultSet() {	/// generates the resultSet
 		Collections.sort(publications, new Comparator<Publication>() {
 
 			@Override

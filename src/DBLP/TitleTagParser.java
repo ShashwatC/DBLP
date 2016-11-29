@@ -1,7 +1,7 @@
 package DBLP;
 
 /** \class TitleTagParser
- *  \brief Concrete subclass of Parser, performs title type queries passed to it via adapter using SAX
+ *  \brief Concrete subclass of XMLParser, performs title type queries passed to it via adapter using SAX
  *  
  */
 
@@ -33,7 +33,7 @@ public class TitleTagParser extends XMLParser{
 	}
 
 	@Override
-	public void startElement(String uri, String localName, String qName, Attributes attributes) {
+	public void startElement(String uri, String localName, String qName, Attributes attributes) { /// startElement SAX function
 		if (depth==1){
 			if (publications!=null && publications.size()>0){
 				if (publications.get(publications.size()-1).getYear()==null){
@@ -61,7 +61,7 @@ public class TitleTagParser extends XMLParser{
 	}
 
 	@Override
-	public void endElement(String uri, String localName, String qName) {
+	public void endElement(String uri, String localName, String qName) { /// endElement SAX function
 		depth--;
 		if (!disabled){
 
@@ -106,7 +106,7 @@ public class TitleTagParser extends XMLParser{
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length) {
+	public void characters(char[] ch, int start, int length) { /// characters SAX function
 		// TODO Auto-generated method stub
 		if (!disabled){			
 			stringBuilder+=new String(ch,start,length);										

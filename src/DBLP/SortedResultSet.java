@@ -27,7 +27,7 @@ public class SortedResultSet extends ResultSet{
 	}
 
 	@Override
-	public List<Publication> generateResultSet() {
+	public List<Publication> generateResultSet() { /// generates the resultSet
 		Collections.sort(publications, Collections.reverseOrder());
 		return publications;
 	}

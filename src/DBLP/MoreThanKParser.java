@@ -1,7 +1,7 @@
 package DBLP;
 
 /** \class MoreThanKParser
- *  \brief Concrete subclass of Parser, performs more than K type queries passed to it via adapter using SAX
+ *  \brief Concrete subclass of XMLParser, performs more than K type queries passed to it via adapter using SAX
  *  
  */
 
@@ -54,7 +54,7 @@ public class MoreThanKParser extends XMLParser {
 	}
 
 	@Override
-	public void startElement(String uri, String localName, String qName, Attributes attributes){
+	public void startElement(String uri, String localName, String qName, Attributes attributes){ /// startElement SAX function
 		if (depth==1){
 			if (qName.equals("person") || (qName.equals("www") && attributes.getValue("key").substring(0, 9).equals("homepages"))){
 				disabled = true;	// Ignore person and homepage fields
@@ -73,7 +73,7 @@ public class MoreThanKParser extends XMLParser {
 	}
 	
 	@Override
-	public void endElement(String uri, String localName, String qName){
+	public void endElement(String uri, String localName, String qName){ /// endElement SAX function
 		depth--;
 		if (!disabled){
 			if (qName.equals("author")){	
@@ -99,7 +99,7 @@ public class MoreThanKParser extends XMLParser {
 	}
 
 	@Override
-	public void characters(char[] ch, int start, int length){
+	public void characters(char[] ch, int start, int length){ /// characters SAX function
 		if (!disabled && authorFlag){			
 			stringBuilder+=new String(ch,start,length);										
 		}		

@@ -60,7 +60,6 @@ public class Relevance {
 		if (i==tag.length()){
 			countOccurences++;
 		}
-		System.out.println(title+" "+countOccurences);
 
 		return countOccurences;
 	}
