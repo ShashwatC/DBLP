@@ -30,9 +30,6 @@ public class QueryFactory {
 			TitleTagQuery q = new TitleTagQuery(parameters1,parameters2);
 			this.publications = q.parseQuery();
 		}
-		if (queryType.equals("predict")){
-			
-		}
 	}
 	
 	public List<Publication> getPublications(){
