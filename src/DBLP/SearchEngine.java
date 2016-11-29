@@ -66,57 +66,56 @@ public class SearchEngine extends JFrame {
     	System.setProperty("jdk.xml.entityExpansionLimit", "0");
         
     	Adapter.setXMLFileLocation("sample.xml");
-    	EntityResolutionAdapter.initialize();
-    	
-    	java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
-    	x1.add(3);
-    	new QueryFactory("moreThanK", null, x1);
-    	
-    	/*java.util.List<String> x = new java.util.ArrayList<String>();
-    	x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
-    	x.add("relSort");
-    	List<Publication> p1;
-    	List<Publication> p2;
-    	//x.add("since");
-    	ArrayList<Integer> y = new ArrayList<Integer>();
-    	//y.add(1972);
-    	p1 = (new QueryFactory("findByTitleTags",x,y)).getPublications();
-    	//x.set(2, "between");
-    	//y.add(1982);
-    	x.set(0,new String("E. F. Codd") );
-    	p2 = (new QueryFactory("findByAuthor",x,y)).getPublications();
-    	System.out.println(p1.size()+" "+p2.size());*/
-    	
-    	/*Iterator<String> mapIter = EntityResolutionAdapter.getAuthorAliases().keySet().iterator();
-    	
-    	while (mapIter.hasNext()){
-    		String key = mapIter.next();
-    		System.out.println("Key: "+key+" Value: "+EntityResolutionAdapter.getAuthorAliases().get(key));
-    	}
-    	System.out.println(EntityResolutionAdapter.areSame("Stephan Diehl", "Stephan D."));
-    	System.out.println(EntityResolutionAdapter.areSame("Stephan Diehl", "Takatoyo Umemoto"));
-    	System.out.println(EntityResolutionAdapter.areSame("Stefandoesntexist", "Takatoyo Umemoto"));
-    	*/
-    	
-    	/*
-    	 * Format for QueryFactory
-    	 * new QueryFacotry(arg0,arg1,arg2);
-    	 * arg0 = what type of query you want
-    	 * Options = "findByTitleTags", "findByAuthor", "moreThanK", "predict"
-    	 * For "findByTitleTags" and "findByAuthor"
-    	 * arg1 = Can range from 1 argument (title/name) to 4 argument (title/name + 3 out of 4 options)
-    	 * first we need the title or author name
-    	 * Next, what all options you want for displaying result
-    	 * Options = "dateSort", "relSort", "between", "since" (note, dateSort and relSort can't be used simultaneously)
-    	 * arg2 = 0,1 or 2 integers (integer ArrayList)
-    	 * 1st integer, if present, is start year
-    	 * 2nd integer, if present, is end year
-    	 * For "moreThanK" 
-    	 * arg1 = null
-    	 * arg2 = (integer ArrayList) of size 1
-    	 */
-   	
+    	EntityResolutionAdapter.initialize();   	
     	SearchEngine se = new SearchEngine();
         se.setVisible(true);
     }
 }
+
+/*java.util.List<Integer> x1 = new java.util.ArrayList<Integer>();
+x1.add(3);
+new QueryFactory("moreThanK", null, x1);*/
+
+/*java.util.List<String> x = new java.util.ArrayList<String>();
+x.add("Interactive Support for Non-Programmers: The Relational and Network Approaches.");
+x.add("relSort");
+List<Publication> p1;
+List<Publication> p2;
+//x.add("since");
+ArrayList<Integer> y = new ArrayList<Integer>();
+//y.add(1972);
+p1 = (new QueryFactory("findByTitleTags",x,y)).getPublications();
+//x.set(2, "between");
+//y.add(1982);
+x.set(0,new String("E. F. Codd") );
+p2 = (new QueryFactory("findByAuthor",x,y)).getPublications();
+System.out.println(p1.size()+" "+p2.size());*/
+
+/*Iterator<String> mapIter = EntityResolutionAdapter.getAuthorAliases().keySet().iterator();
+
+while (mapIter.hasNext()){
+	String key = mapIter.next();
+	System.out.println("Key: "+key+" Value: "+EntityResolutionAdapter.getAuthorAliases().get(key));
+}
+System.out.println(EntityResolutionAdapter.areSame("Stephan Diehl", "Stephan D."));
+System.out.println(EntityResolutionAdapter.areSame("Stephan Diehl", "Takatoyo Umemoto"));
+System.out.println(EntityResolutionAdapter.areSame("Stefandoesntexist", "Takatoyo Umemoto"));
+*/
+
+/*
+ * Format for QueryFactory
+ * new QueryFacotry(arg0,arg1,arg2);
+ * arg0 = what type of query you want
+ * Options = "findByTitleTags", "findByAuthor", "moreThanK", "predict"
+ * For "findByTitleTags" and "findByAuthor"
+ * arg1 = Can range from 1 argument (title/name) to 4 argument (title/name + 3 out of 4 options)
+ * first we need the title or author name
+ * Next, what all options you want for displaying result
+ * Options = "dateSort", "relSort", "between", "since" (note, dateSort and relSort can't be used simultaneously)
+ * arg2 = 0,1 or 2 integers (integer ArrayList)
+ * 1st integer, if present, is start year
+ * 2nd integer, if present, is end year
+ * For "moreThanK" 
+ * arg1 = null
+ * arg2 = (integer ArrayList) of size 1
+ */
