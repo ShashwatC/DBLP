@@ -95,35 +95,65 @@ public class Query1Pan extends JPanel {
         boolean sortYearS = sortYearB.isSelected();
         boolean sortRelS = sortRelB.isSelected();
         
+        if (checkValid(searchByT, nameTitleT, sinceYearT, customRange1T, customRange2T) == 0)
+            return null;
+
+        ArrayList<? extends Object> ret = new ArrayList<Object>();
+        ret = constructRet(sortYearS, sortRelS, searchByT, nameTitleT, sinceYearT, customRange1T, customRange2T);
+        if (ret == null)
+            return null;
+
+        //for (String tmp : ret.get(1))
+            //System.out.println(tmp);
+        //System.out.println("Arg0: "+ret.get(0));
+        //System.out.println("Arg1:");
+        //if (ret.get(1)!=null){
+            //for (String s: ret.get(1)){
+                //System.out.println(s);
+            //}
+        //}
+        //System.out.println("Arg2:");
+        //if (ret.get(2)!=null){
+            //for (int i: ret.get(2)){
+                //System.out.println(i);
+            //}
+        //}
+        
+        return ret;
+    }
+
+    private int checkValid(String searchByT, String nameTitleT, String sinceYearT, String customRange1T, String customRange2T) {    
         ///< search type must be selected
         if (searchByT.equals("Search By"))
-            return null;
+            return 0;
         ///< empty name/title not allowed
         else if (nameTitleT.isEmpty())
-            return null;
+            return 0;
         ///< if both sinceYear and customRange exist, clash, not allowed (?)
         //else if (!sinceYearT.isEmpty() && 
         //        !(customRange1T.isEmpty() && customRange2T.isEmpty()))
-        //    return null;
+        //    return 0;
         ///< if only one out of customRange is defined
         else if ((customRange1T.isEmpty() ^ customRange2T.isEmpty()))
-            return null;
+            return 0;
         ///< all year empty not allowed (not sure?)
         //else if (sinceYearT.isEmpty() && customRange1T.isEmpty() && customRange2T.isEmpty())
-        //  return null;
+        //  return 0;
         ///< one radio button must be selected (?)
         //else if (!sortYearS && !sortRelS)
-        //    return null;
+        //    return 0;
         
         ///< checking for numerical values; if not, invalid
         if (!sinceYearT.isEmpty() && !sinceYearT.chars().allMatch(Character::isDigit))
-            return null;
+            return 0;
         if (!customRange1T.isEmpty() && !customRange1T.chars().allMatch(Character::isDigit))
-            return null;
+            return 0;
         if (!customRange2T.isEmpty() && !customRange2T.chars().allMatch(Character::isDigit))
-            return null;
-                    
-        ///< Return appropriate list of params for Model, Parser, whatever
+            return 0;
+        return 1;
+    } 
+
+    private ArrayList<? extends Object> constructRet(boolean sortYearS, boolean sortRelS, String searchByT, String nameTitleT, String sinceYearT, String customRange1T, String customRange2T) {
         ///< Following API for QueryFactory:
         String arg0 = new String();
         ArrayList<String> arg1 = new ArrayList<String>();
@@ -166,28 +196,11 @@ public class Query1Pan extends JPanel {
         else if (sinceY == 0 && customR1 == 0 && customR2 == 0) {
             arg2 = null;
         }
-        
-        for (String tmp : arg1)
-            System.out.println(tmp);
 
         ArrayList<Object> ret = new ArrayList<Object>();
         ret.add(arg0);
         ret.add(arg1);
         ret.add(arg2);
-        System.out.println("Arg0: "+arg0);
-        System.out.println("Arg1:");
-        if (arg1!=null){
-        	for (String s: arg1){
-        		System.out.println(s);
-        	}
-        }
-        System.out.println("Arg2:");
-        if (arg2!=null){
-        	for (int i: arg2){
-        		System.out.println(i);
-        	}
-        }
-        
         return ret;
     }
 }
