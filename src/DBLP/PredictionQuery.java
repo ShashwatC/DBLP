@@ -3,6 +3,16 @@ package DBLP;
 import java.util.ArrayList;
 import java.util.List;
 
+/** \class PredictionQuery
+ *  \brief Independent class which uses QueryFactory to make Queries and uses the results for prediction
+ * 
+ */
+
+
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class PredictionQuery {
 	private List<Integer> paperCount;
 	private int year;
