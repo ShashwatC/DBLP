@@ -2,9 +2,15 @@ package DBLP;
 
 import java.awt.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
+/** \class Query3Pan
+ *  \brief GUI input panel for Query 3
+ */
+/**
+ * @author Shashwat Chaudhary 2015091
+ * @author Radhika Ghosal 2015160
+ */
 public class Query3Pan extends JPanel {
     JTextField yearF;
     ArrayList<JTextField> authF;

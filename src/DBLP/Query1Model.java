@@ -2,6 +2,9 @@ package DBLP;
 
 import java.util.ArrayList;
 
+/** \class Query1Pan
+ *  \brief GUI input panel for Query 1
+ */
 /**
  * @author Shashwat Chaudhary 2015091
  * @author Radhika Ghosal 2015160

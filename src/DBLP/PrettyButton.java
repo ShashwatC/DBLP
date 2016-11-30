@@ -3,6 +3,9 @@ package DBLP;
 import javax.swing.*;
 import java.awt.*;
 
+/** \class PrettyButton
+ *  \brief Well, it's a prettier button...
+ */
 /**
  * @author Shashwat Chaudhary 2015091
  * @author Radhika Ghosal 2015160
