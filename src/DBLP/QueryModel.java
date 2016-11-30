@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
+/** \class QueryModel
+ *  \brief Creates abstract base table model for other table models to inherit from.
+ */
 /**
  * @author Shashwat Chaudhary 2015091
  * @author Radhika Ghosal 2015160

@@ -2,6 +2,9 @@ package DBLP;
 
 import java.util.ArrayList;
 
+/** \class Query2Model
+ *  \brief Table model format for Query 2
+ */
 /**
  * @author Shashwat Chaudhary 2015091
  * @author Radhika Ghosal 2015160

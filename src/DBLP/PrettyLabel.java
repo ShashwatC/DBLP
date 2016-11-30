@@ -3,6 +3,9 @@ package DBLP;
 import javax.swing.*;
 import java.awt.*;
 
+/** \class PrettyLabel
+ *  \brief Well, it's a prettier label...
+ */
 /**
  * @author Shashwat Chaudhary 2015091
  * @author Radhika Ghosal 2015160

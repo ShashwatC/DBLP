@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+/** \class Query2Pan
+ *  \brief GUI input panel for Query 2
+ */
 /**
  * @author Shashwat Chaudhary 2015091
  * @author Radhika Ghosal 2015160
