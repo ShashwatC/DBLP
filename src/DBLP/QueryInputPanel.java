@@ -1,12 +1,10 @@
 package DBLP;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 /** \class QueryInputPanel
  *  \brief Inputs various params for different kinds of queries
  */
@@ -24,30 +22,21 @@ public class QueryInputPanel extends JPanel {
     private Component[] comp1List;
     private Component[] comp2List;
     private Component[] comp3List;
-    
     private int currQType;
-    
     private ArrayList<ListenerPan> listenerList;
-    
     public QueryInputPanel() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setMaximumSize(new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH));
-       
         String[] queryList = {"Queries", "Query 1", "Query 2", "Query 3"};
         queryBox = new JComboBox(queryList);
         queryBox.setMaximumSize(queryBox.getPreferredSize());
-        
         currQType = 0;
-        
         listenerList = new ArrayList<ListenerPan>();
-        
         reset();
-                
         queryBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JComboBox cb = (JComboBox)e.getSource();
                 String qName = (String)cb.getSelectedItem();
-
                 if (qName.equals("Query 1")) {
                     currQType = 1;
                     redraw(comp1List);
@@ -66,25 +55,20 @@ public class QueryInputPanel extends JPanel {
                 }
             }
         });
-        
         this.add(Box.createRigidArea(
                 new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/6)));
         this.add(queryBox);
         this.add(Box.createRigidArea(
                 new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3)));
     }
-
     private void redraw(Component[] panList) {
         this.removeAll();
-
         for (Component pan : panList) {
             this.add(pan);
         }
-
         this.validate();
         this.repaint();
     }
-    
     private void reset() {
         query1Pan = new Query1Pan();
         query2Pan = new Query2Pan();
@@ -94,7 +78,6 @@ public class QueryInputPanel extends JPanel {
         comp1List = new Component[5];
         comp2List = new Component[5];
         comp3List = new Component[5];
-        
         ///< For Query 1
         Component[] comp1List = {
                 Box.createRigidArea(
@@ -104,7 +87,6 @@ public class QueryInputPanel extends JPanel {
                         new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3))
         };
         System.arraycopy(comp1List, 0, this.comp1List, 0, comp1List.length);
-        
         ///< For Query 2
         Component[] comp2List = {
                 Box.createRigidArea(
@@ -114,7 +96,6 @@ public class QueryInputPanel extends JPanel {
                         new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3))
         };
         System.arraycopy(comp2List, 0, this.comp2List, 0, comp2List.length);
-        
         ///< Query 3
         Component[] comp3List = {
                 Box.createRigidArea(
@@ -124,8 +105,6 @@ public class QueryInputPanel extends JPanel {
                         new Dimension(SearchEngine.FRAMEW/3, SearchEngine.FRAMEH/3))
         };
         System.arraycopy(comp3List, 0, this.comp3List, 0, comp3List.length);
-        
-        
         ///< For empty query
         Component[] comp0List = {
                 Box.createRigidArea(
@@ -136,22 +115,17 @@ public class QueryInputPanel extends JPanel {
         };
         System.arraycopy(comp0List, 0, this.comp0List, 0, comp0List.length);
     }
-    
     public void addListener(ListenerPan pan) {
         listenerList.add(pan);
     }
-    
     public void notifyListeners(ArrayList<? extends Object> params) {
-        
         ArrayList<? extends Object> objList = new ArrayList<Object>();
-        
         if (currQType == 1 || currQType == 2) {
             QueryFactory queryFactory = new QueryFactory(
                     (String)params.get(0), 
                     (ArrayList<String>)params.get(1),
                     (ArrayList<Integer>)params.get(2)
             );
-            
             if (currQType == 1) {
                 List<Publication> pubList = queryFactory.getPublications();
                 if (pubList != null) {
@@ -170,42 +144,32 @@ public class QueryInputPanel extends JPanel {
             ).predict();
             objList = new ArrayList<Integer>(predList);
         }
-        
         for (ListenerPan pan : listenerList) {
             pan.setQueryData(currQType, objList);
         }
     }
-    
     private class SearchResetPan extends JPanel {
         PrettyLabel invalidL;
         PrettyButton searchB;
         PrettyButton resetB;
-        
         public SearchResetPan() {
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-            
             JPanel midPan = new JPanel();
             midPan.setLayout(new BoxLayout(midPan, BoxLayout.X_AXIS));
-            
             invalidL = new PrettyLabel("Parameters are invalid. Try again.", Color.RED);
             invalidL.setVisible(false);
-            
             searchB = new PrettyButton("Search", Color.BLACK);
             resetB = new PrettyButton("Reset", Color.RED);
-            
             invalidL.setAlignmentX(CENTER_ALIGNMENT);
-            
             searchB.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     ArrayList<? extends Object> params = new ArrayList<Object>();
-                    
                     switch(currQType) {
                         case 1: params = query1Pan.formContentsValid(); break;
                         case 2: params = query2Pan.formContentsValid(); break;
                         case 3: params = query3Pan.formContentsValid(); break;
                         default: break;
                     }
-                    
                     if (params != null) {
                         invalidL.setVisible(false);
                         notifyListeners(params);
@@ -215,7 +179,6 @@ public class QueryInputPanel extends JPanel {
                     }
                 }
             });
-            
             resetB.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     reset();
@@ -228,10 +191,8 @@ public class QueryInputPanel extends JPanel {
                     }
                 }
             });
-            
             midPan.add(searchB);
             midPan.add(resetB);
-            
             this.add(invalidL);
             this.add(midPan);
         }
