@@ -56,17 +56,6 @@ public class TitleTagQuery extends Query{
 				if (option.equals("between"))between();		// Filter between two years
 				if (option.equals("since"))since();			// Filter start year and end year
 			}
-			int ctr = 1;
-			for (Publication p : publications){
-				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());
-				if (p.getAuthorNameList()!=null){
-					for (String name: p.getAuthorNameList()){
-						System.out.print(name+" & ");
-					}
-				}
-				System.out.println();
-				ctr++;
-			}
 			return publications;
 		}
 	}

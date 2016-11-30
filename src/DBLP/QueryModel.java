@@ -35,7 +35,6 @@ public abstract class QueryModel extends AbstractTableModel {
     
     public void setValueAt(Object value, int row, int col) {
         data[row][col] = value;
-        System.out.println(row+" "+col+" "+data[row][col]);
         fireTableCellUpdated(row, col);
     }
     

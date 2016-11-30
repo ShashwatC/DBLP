@@ -11,6 +11,7 @@ public class PredictionQuery {
 	public PredictionQuery(List<String> authors, int year){
 		this.authors = authors;
 		this.year = year;
+		paperCount = new ArrayList<Integer>();
 	}
 	
 	public List<Integer> predict(){
@@ -28,7 +29,9 @@ public class PredictionQuery {
 					startYear = Integer.parseInt(publ.getYear());
 				}
 			}
+			System.out.println(totalBefore+" "+startYear+" "+year);
 			int expectedCount = totalBefore/(year-startYear);
+			paperCount.add(expectedCount);
 		}
 		return paperCount;
 	}

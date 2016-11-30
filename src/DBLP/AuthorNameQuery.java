@@ -57,18 +57,6 @@ public class AuthorNameQuery extends Query{
 				if (option.equals("since"))since();			// Filter start year and end year
 			}
 			
-			int ctr = 1;
-			for (Publication p : publications){
-				System.out.println("Sno: "+ctr+" Title: "+p.getTitle()+" Year:"+p.getYear() + " pages "+p.getNumPages()+" volume "+p.getVolume()+" journal/booktitle "+ p.getJournalBook() + " url " + p.getUrl());
-				if (p.getAuthorNameList()!=null){
-					
-					for (String name: p.getAuthorNameList()){
-						System.out.print(name+" & ");
-					}
-				}
-				System.out.println();
-				ctr++;
-			}
 			System.out.println("Sending back");
 			return publications;
 		}
