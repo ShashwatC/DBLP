@@ -130,6 +130,8 @@ public class QueryInputPanel extends JPanel {
                 List<Publication> pubList = queryFactory.getPublications();
                 if (pubList != null) {
                     objList = new ArrayList<Publication>(pubList);
+                    if (((ArrayList<String>)params.get(1)).size() == 1)
+                        Collections.reverse(objList);
                 }
             }
             else if (currQType == 2) {
